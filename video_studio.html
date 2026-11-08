@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Reel Style Explainer - Stok UMKM Dicatat Manual - Moch Ramadhan Sulaeman (2514101062)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #065f46;
+        --accent: #10b981;
+        --gold: #ffd700;
+        --bg: #070a12;
+        --card: #111827;
+        --border: #1e293b;
+        --text: #f8fafc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        min-height: 100vh;
+    }
+    header {
+        text-align: center;
+        margin-bottom: 20px;
+        max-width: 900px;
+    }
+    h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 26px;
+        font-weight: 900;
+        color: #34d399;
+        margin-bottom: 6px;
+        letter-spacing: -0.5px;
+    }
+    .sub-meta {
+        font-size: 14px;
+        color: #94a3b8;
+    }
+    .studio-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 1240px;
+        width: 100%;
+    }
+    .player-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 360px;
+        aspect-ratio: 9 / 16;
+        height: auto;
+        background: #000;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px -10px rgba(16, 185, 129, 0.4), 0 0 0 8px #1e293b;
+    }
+    canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+        cursor: pointer;
+    }
+    .controls-panel {
+        flex: 1;
+        min-width: 290px;
+        width: 100%;
+        max-width: 540px;
+        background: var(--card);
+        padding: 24px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+    .controls-panel h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        color: #34d399;
+        margin-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .status-badge {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        background: #059669;
+        color: white;
+    }
+    .status-badge.rec {
+        background: #dc2626;
+        animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.65; }
+    }
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 20px 0;
+    }
+    .btn {
+        font-family: 'Poppins', sans-serif;
+        background: #059669;
+        color: white;
+        border: none;
+        padding: 14px 20px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.2s;
+    }
+    .btn:hover {
+        background: #047857;
+        transform: translateY(-2px);
+    }
+    .btn-record {
+        background: #dc2626;
+        box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45);
+    }
+    .btn-record:hover {
+        background: #b91c1c;
+    }
+    .btn-secondary {
+        background: #1f2937;
+    }
+    .btn-secondary:hover {
+        background: #374151;
+    }
+    .scene-jumper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    .scene-btn {
+        background: #0f172a;
+        border: 1px solid #334155;
+        color: #cbd5e1;
+        padding: 10px 4px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.15s;
+    }
+    .scene-btn:hover, .scene-btn.active {
+        background: #059669;
+        color: white;
+        border-color: #34d399;
+    }
+    .settings-box {
+        background: #0b0f19;
+        border: 1px solid var(--border);
+        padding: 16px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 13px;
+        color: #cbd5e1;
+    }
+    .settings-row:last-child { margin-bottom: 0; }
+    .info-box {
+        background: rgba(16, 185, 129, 0.12);
+        padding: 16px;
+        border-radius: 12px;
+        font-size: 13px;
+        color: #a7f3d0;
+        line-height: 1.6;
+        border-left: 4px solid #10b981;
+    }
+    @media (max-width: 650px) {
+        body { padding: 12px 8px; }
+        h1 { font-size: 19px; }
+        .sub-meta { font-size: 12px; }
+        .player-wrapper {
+            max-width: 320px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3), 0 0 0 5px #1e293b;
+        }
+        .controls-panel {
+            padding: 16px;
+            border-radius: 16px;
+        }
+        .btn {
+            font-size: 14px;
+            padding: 12px 14px;
+        }
+        .scene-btn {
+            font-size: 11px;
+            padding: 8px 2px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>ANIMASI GERAK UMKM & APLIKASI SMARTSTOCK (REELS STYLE)</h1>
+    <div class="sub-meta">
+        <strong>Referensi:</strong> Animasi Karakter UMKM & Simulasi Interaktif Aplikasi | <strong>Kasus:</strong> Stok UMKM Dicatat Manual | <strong>Mahasiswa:</strong> Moch Ramadhan Sulaeman (2514101062)
+    </div>
+</header>
+
+<div class="studio-container">
+    <div class="player-wrapper">
+        <canvas id="videoCanvas" width="1080" height="1920"></canvas>
+    </div>
+
+    <div class="controls-panel">
+        <h2>
+            <span>KONTROL & REKAM VIDEO REEL</span>
+            <span id="statusLabel" class="status-badge">Siap Diputar</span>
+        </h2>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <span style="font-size: 14px; color: #94a3b8;">Waktu Pemutaran:</span>
+            <span id="timerLabel" style="font-family: monospace; font-size: 18px; font-weight: bold; color: #ffd700;">00:00 / 02:00</span>
+        </div>
+
+        <div class="btn-group">
+            <button id="playBtn" class="btn" onclick="togglePlay()">
+                <span id="playIcon">▶</span> <span id="playText">Putar Animasi Reels (Preview)</span>
+            </button>
+            
+            <button id="recordBtn" class="btn btn-record" onclick="startRecording()">
+                <span>🔴</span> <span>Putar & Rekam Video Otomatis (Unduh MP4/WebM)</span>
+            </button>
+            
+            <button class="btn btn-secondary" onclick="restartVideo()">
+                <span>🔄</span> <span>Ulangi Dari Detik 00:00</span>
+            </button>
+        </div>
+
+        <div class="settings-box">
+            <div class="settings-row" style="background: rgba(16, 185, 129, 0.15); padding: 8px 12px; border-radius: 8px; border: 1px solid #10b981; margin-bottom: 12px;">
+                <div>
+                    <strong style="color: #34d399; font-size: 14px;">🎙️ Rekam Mikrofon (Suara Sendiri):</strong><br>
+                    <span style="color: #cbd5e1; font-size: 11px;">Suara Anda langsung masuk ke video sambil baca teks karaoke di layar.</span>
+                </div>
+                <input type="checkbox" id="micToggle" style="width: 20px; height: 20px; cursor: pointer; accent-color: #10b981;">
+            </div>
+            <div class="settings-row">
+                <span>🔊 Narasi Suara AI (Voice Over Bahasa Indonesia):</span>
+                <input type="checkbox" id="voiceToggle" checked style="width: 18px; height: 18px; cursor: pointer;">
+            </div>
+            <div class="settings-row">
+                <span>⚡ Transisi Sinematik (Opening Shutter & Emerald Sweep):</span>
+                <input type="checkbox" id="transitionToggle" checked style="width: 18px; height: 18px; cursor: pointer;">
+            </div>
+            <div class="settings-row">
+                <span>🏃 Kecepatan Perekaman:</span>
+                <select id="speedSelect" style="background: #1e293b; color: white; border: 1px solid #475569; padding: 4px 8px; border-radius: 6px; font-size: 12px;">
+                    <option value="1">1x (Kecepatan Normal 120 Detik)</option>
+                    <option value="2">2x (Cepat 60 Detik)</option>
+                </select>
+            </div>
+        </div>
+
+        <label style="font-size: 13px; color: #94a3b8; display: block; margin-bottom: 8px;">Lompat ke Adegan Tertentu:</label>
+        <div class="scene-jumper">
+            <button class="scene-btn" onclick="jumpTo(0)">1. Hook (0s)</button>
+            <button class="scene-btn" onclick="jumpTo(15)">2. Masalah (15s)</button>
+            <button class="scene-btn" onclick="jumpTo(30)">3. Solusi (30s)</button>
+            <button class="scene-btn" onclick="jumpTo(50)">4. Demo Aplikasi (50s)</button>
+            <button class="scene-btn" onclick="jumpTo(75)">5. Hasil (75s)</button>
+            <button class="scene-btn" onclick="jumpTo(100)">6. Outro (100s)</button>
+        </div>
+
+        <div class="info-box" style="margin-bottom: 15px;">
+            <strong>🎙️ CARA REKAM SUARA (VOICE OVER):</strong><br>
+            • <strong>Opsi A (Suara Sendiri via Mic - Nilai Plus UTS):</strong> Centang <em>"🎙️ Rekam Mikrofon"</em> di atas, lalu klik tombol merah <strong>"Putar & Rekam"</strong>. Berikan izin mic saat pop-up browser muncul. Bacalah teks narasi karaoke di bawah layar secara santai!<br>
+            • <strong>Opsi B (Suara AI Otomatis):</strong> Biarkan <em>"Narasi Suara AI"</em> tercentang. Tekan shortcut <strong>Win + G</strong> (Xbox Game Bar Windows) lalu klik tombol Record untuk merekam layar + audio AI secara lossless.
+        </div>
+
+        <div class="info-box">
+            <strong>🎬 Animasi Gerak Sesuai Referensi Instagram:</strong><br>
+            • <strong>Karakter UMKM Bergerak Hidup:</strong> Pak Joko bergerak garuk kepala bingung di adegan 1, panik memegang pipi di adegan 2, tersenyum mengarahkan HP di adegan 3 & 4, dan acungkan dua jempol gembira di adegan 5!<br>
+            • <strong>Simulasi Interaktif Aplikasi SmartStock:</strong> Mockup smartphone interaktif dengan kamera scanner laser aktif (Langkah 1), live counter pengurangan stok otomatis (Langkah 2), dan pop-up banner WhatsApp Bot kulakan (Langkah 3)!
+        </div>
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById('videoCanvas');
+const ctx = canvas.getContext('2d');
+const W = 1080;
+const H = 1920;
+
+let isPlaying = false;
+let isRecording = false;
+let currentTime = 0;
+const totalDuration = 120;
+let lastFrameTimestamp = 0;
+let animationFrameId = null;
+
+let mediaRecorder = null;
+let recordedChunks = [];
+let audioCtx = null;
+let audioDest = null;
+let micStream = null;
+let micSourceNode = null;
+
+// Preload scene images
+const sceneImages = {};
+for (let i = 1; i <= 6; i++) {
+    const img = new Image();
+    img.src = `scene${i}.jpg?v=` + Date.now();
+    img.onload = () => { sceneImages[i] = img; };
+}
+
+// Storyboard Data
+const scenes = [
+    {
+        id: 1,
+        start: 0,
+        end: 15,
+        title: "MASALAH KLASIK UMKM",
+        sub: "Stok Masih Dicatat Manual?",
+        narration: "Pernah nggak, kamu lihat toko UMKM yang masih mencatat stok barang pakai buku tulis tebal dan nota kertas yang gampang hilang? Saat pembeli tanya barang, pemiliknya kebingungan bongkar rak berjam-jam!",
+        accent: '#ef4444'
+    },
+    {
+        id: 2,
+        start: 15,
+        end: 30,
+        title: "DAMPAK FATAL",
+        sub: "Pesanan Dibatalkan, Modal Amblas!",
+        narration: "Akibatnya fatal! Terjadi 'overselling'—pesanan online masuk tapi barang di toko fisik sudah laku. Toko kena penalti bintang satu, pembeli kecewa, dan barang di gudang kedaluwarsa tanpa sadar. Modal jutaan rupiah pun amblas sia-sia!",
+        accent: '#f97316'
+    },
+    {
+        id: 3,
+        start: 30,
+        end: 50,
+        title: "SOLUSI DIGITAL UMKM",
+        sub: "SmartStock AI & OmniSync UMKM™",
+        narration: "Kini saatnya UMKM naik kelas dengan SmartStock AI! Aplikasi manajemen stok cerdas berbasis AI dan kamera ponsel, menghubungkan toko fisik dan seluruh toko online kamu secara otomatis dalam satu genggaman!",
+        accent: '#10b981'
+    },
+    {
+        id: 4,
+        start: 50,
+        end: 75,
+        title: "DEMO APLIKASI CERDAS",
+        sub: "Tiga Langkah Mudah Kelola Stok",
+        narration: "Cara kerjanya super gampang dalam tiga langkah! Pertama: Foto nota atau scan barcode barang pakai kamera ponsel. Kedua: Stok otomatis tersinkronisasi secara real-time ke kasir toko dan marketplace online. Ketiga: Dapatkan pengingat pintar di WhatsApp saat stok barang menipis sebelum kehabisan!",
+        accent: '#34d399'
+    },
+    {
+        id: 5,
+        start: 75,
+        end: 100,
+        title: "HASIL & MANFAAT NYATA",
+        sub: "Hemat Waktu 80%, Nol Pembatalan!",
+        narration: "Hasilnya luar biasa! Pembukuan seratus persen akurat, nol pembatalan pesanan, hemat waktu hingga delapan puluh persen, dan toko kebanjiran ulasan bintang lima. Bisnis berkembang pesat, pemilik toko tidur nyenyak!",
+        accent: '#10b981'
+    },
+    {
+        id: 6,
+        start: 100,
+        end: 120,
+        title: "KESIMPULAN & PENUTUP",
+        sub: "UMKM Naik Kelas, Kelola Stok Cepat & Pas!",
+        narration: "Kelola stok gak perlu bikin pusing. Bersama SmartStock AI, UMKM naik kelas, kelola stok cepat dan pas! Saya Moch Ramadhan Sulaeman, terima kasih.",
+        accent: '#ffd700'
+    }
+];
+
+// Easing Functions
+function easeOutBounce(x) {
+    const n1 = 7.5625;
+    const d1 = 2.75;
+    if (x < 1 / d1) return n1 * x * x;
+    else if (x < 2 / d1) return n1 * (x -= 1.5 / d1) * x + 0.75;
+    else if (x < 2.5 / d1) return n1 * (x -= 2.25 / d1) * x + 0.9375;
+    else return n1 * (x -= 2.625 / d1) * x + 0.984375;
+}
+function easeOutBack(x) {
+    const c1 = 1.70158;
+    const c3 = c1 + 1;
+    return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+}
+function easeInOutCubic(x) {
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+}
+
+// Procedural Audio Engine
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioDest = audioCtx.createMediaStreamDestination();
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+}
+
+function playSFX(type) {
+    if (!audioCtx) return;
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    if (audioDest) gain.connect(audioDest);
+
+    if (type === 'whoosh') {
+        osc.frequency.setValueAtTime(450, now);
+        osc.frequency.exponentialRampToValueAtTime(70, now + 0.3);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+        osc.start(now);
+        osc.stop(now + 0.3);
+    } else if (type === 'beep') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1300, now);
+        gain.gain.setValueAtTime(0.35, now);
+        gain.gain.linearRampToValueAtTime(0.01, now + 0.12);
+        osc.start(now);
+        osc.stop(now + 0.12);
+    } else if (type === 'ding') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(987.77, now);
+        osc.frequency.exponentialRampToValueAtTime(1975.53, now + 0.35);
+        gain.gain.setValueAtTime(0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+        osc.start(now);
+        osc.stop(now + 0.7);
+    } else if (type === 'cha-ching') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1318.51, now);
+        osc.frequency.setValueAtTime(1760, now + 0.1);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+        osc.start(now);
+        osc.stop(now + 0.5);
+    }
+}
+
+// Voice Over AI Synthesis
+let currentSpokenScene = -1;
+function triggerNarration(sceneIndex) {
+    if (!document.getElementById('voiceToggle').checked) return;
+    if (!('speechSynthesis' in window)) return;
+    if (currentSpokenScene === sceneIndex) return;
+    currentSpokenScene = sceneIndex;
+
+    window.speechSynthesis.cancel();
+    const sc = scenes[sceneIndex];
+    if (!sc) return;
+
+    const utter = new SpeechSynthesisUtterance(sc.narration);
+    utter.lang = 'id-ID';
+    utter.rate = parseFloat(document.getElementById('speedSelect').value) * 1.05;
+    utter.pitch = 1.0;
+
+    const voices = window.speechSynthesis.getVoices();
+    const idVoice = voices.find(v => v.lang.includes('id') || v.lang.includes('ID'));
+    if (idVoice) utter.voice = idVoice;
+
+    window.speechSynthesis.speak(utter);
+}
+
+function getCurrentScene() {
+    return scenes.find(s => currentTime >= s.start && currentTime < s.end) || scenes[scenes.length - 1];
+}
+
+// Main Render Loop
+function render(timestamp) {
+    if (!lastFrameTimestamp) lastFrameTimestamp = timestamp;
+    const speed = parseFloat(document.getElementById('speedSelect').value);
+    const delta = ((timestamp - lastFrameTimestamp) / 1000) * speed;
+    lastFrameTimestamp = timestamp;
+
+    if (isPlaying) {
+        currentTime += delta;
+        if (currentTime >= totalDuration) {
+            currentTime = totalDuration;
+            stopPlayback();
+            if (isRecording) stopRecording();
+        }
+    }
+
+    ctx.save();
+    drawScene(currentTime);
+    ctx.restore();
+
+    updateUI();
+
+    if (isPlaying || isRecording) {
+        animationFrameId = requestAnimationFrame(render);
+    }
+}
+
+function drawScene(time) {
+    const sc = getCurrentScene();
+    const sceneIndex = scenes.indexOf(sc);
+    const sceneProgress = (time - sc.start) / (sc.end - sc.start);
+
+    // Camera breathing
+    const breath = Math.sin(time * 2.5) * 0.012;
+    const zoomPunch = 1.0 + breath;
+
+    if (isPlaying && Math.abs(time - sc.start) < 0.15) {
+        triggerNarration(sceneIndex);
+        playSFX(sceneIndex === 3 ? 'beep' : (sceneIndex === 4 ? 'cha-ching' : 'ding'));
+    }
+
+    // 1. Draw Background Image with Dynamic Per-Scene Camera Motion
+    const bgImg = sceneImages[sc.id];
+    if (bgImg) {
+        let camZoom = 1.0;
+        let camX = 0;
+        let camY = -40;
+        let camRot = 0;
+        let camShakeX = 0;
+        let camShakeY = 0;
+
+        if (sc.id === 1) {
+            // SCENE 1 CAMERA CHOREOGRAPHY:
+            // 0.00 - 0.08 (0.0s - 1.6s): Establishing wide shot (1.03x)
+            // 0.08 - 0.22 (1.6s - 4.4s): DYNAMIC PUNCH ZOOM into Pak Joko's face on hook impact ("MASIH DICATAT MANUAL?!")
+            // 0.22 - 0.60 (4.4s - 12.0s): Smooth tilt and pan down towards the chaotic ledger on the counter
+            // 0.60 - 1.00 (12.0s - 20.0s): Handheld breathing & organic drift
+            if (sceneProgress < 0.08) {
+                camZoom = 1.03 + sceneProgress * 0.25;
+                camY = -30;
+                camX = 0;
+            } else if (sceneProgress < 0.22) {
+                const punchT = (sceneProgress - 0.08) / 0.14;
+                camZoom = 1.05 + easeOutBack(punchT) * 0.16; // punches in to 1.21x!
+                camY = -30 - punchT * 25; // centers tightly on Pak Joko's shocked face
+                // Intense camera screen shake on the impact punch
+                if (punchT < 0.6) {
+                    const shakeAmt = (1 - punchT / 0.6) * 14;
+                    camShakeX = Math.sin(time * 55) * shakeAmt;
+                    camShakeY = Math.cos(time * 48) * shakeAmt;
+                }
+            } else if (sceneProgress < 0.60) {
+                const panT = (sceneProgress - 0.22) / 0.38;
+                const panEased = easeInOutCubic(panT);
+                camZoom = 1.21 - panEased * 0.06; // stays tight at 1.15x
+                camY = -55 - panEased * 120; // smoothly pans down to reveal the messy ledger on counter
+                camX = Math.sin(panT * Math.PI) * 25;
+            } else {
+                const driftT = (sceneProgress - 0.60) / 0.40;
+                camZoom = 1.15 - driftT * 0.04 + Math.sin(time * 2.2) * 0.015;
+                camY = -175 + Math.sin(time * 1.6) * 16;
+                camX = Math.sin(time * 1.8) * 28;
+                camRot = Math.sin(time * 1.2) * 0.012; // subtle organic handheld tilt
+            }
+        } else if (sc.id === 2) {
+            // SCENE 2 CAMERA: Split screen pan from customer to merchant
+            const panT = easeInOutCubic(sceneProgress);
+            camZoom = 1.12 + Math.sin(sceneProgress * Math.PI) * 0.05;
+            camX = 50 - panT * 100; // pans from left to right
+            camY = -40 + Math.sin(time * 2) * 10;
+        } else if (sc.id === 3) {
+            // SCENE 3 CAMERA: Push in to the SmartStock phone app
+            camZoom = 1.04 + easeInOutCubic(sceneProgress) * 0.10;
+            camY = -40 - sceneProgress * 30;
+            camX = Math.sin(time * 1.5) * 12;
+        } else if (sc.id === 4) {
+            // SCENE 4 CAMERA: Gentle dynamic breathing
+            camZoom = 1.05 + Math.sin(sceneProgress * Math.PI * 3) * 0.03;
+            camY = -40;
+            camX = Math.sin(time * 1.2) * 10;
+        } else if (sc.id === 5) {
+            // SCENE 5 CAMERA: Celebratory upward pedestal move
+            camZoom = 1.06 + easeInOutCubic(sceneProgress) * 0.08;
+            camY = -20 - easeInOutCubic(sceneProgress) * 70; // moves up to Pak Joko smiling
+            camX = Math.sin(time * 1.8) * 15;
+        } else if (sc.id === 6) {
+            // SCENE 6 CAMERA: Grand slow pull back
+            camZoom = 1.10 - easeInOutCubic(sceneProgress) * 0.06;
+            camY = -50;
+            camX = Math.sin(time * 1.4) * 10;
+        }
+
+        ctx.save();
+        ctx.translate(W/2 + camX + camShakeX, H/2 + camY + camShakeY);
+        ctx.rotate(camRot);
+        ctx.scale(camZoom, camZoom);
+        ctx.drawImage(bgImg, -W/2, -H/2, W, H);
+        ctx.restore();
+
+        // Dark Vignette Overlay
+        const vig = ctx.createLinearGradient(0, 0, 0, H);
+        vig.addColorStop(0, "rgba(7, 10, 18, 0.55)");
+        vig.addColorStop(0.30, "rgba(7, 10, 18, 0.12)");
+        vig.addColorStop(0.70, "rgba(7, 10, 18, 0.25)");
+        vig.addColorStop(1, "rgba(7, 10, 18, 0.88)");
+        ctx.fillStyle = vig;
+        ctx.fillRect(0, 0, W, H);
+    } else {
+        ctx.fillStyle = "#070a12";
+        ctx.fillRect(0, 0, W, H);
+    }
+
+    // 2. Scene-Specific Motion Graphics (Moving Character & Interactive App)
+    ctx.save();
+    if (sc.id === 1) drawMotionScene1(sceneProgress, time);
+    else if (sc.id === 2) drawMotionScene2(sceneProgress, time);
+    else if (sc.id === 3) drawMotionScene3(sceneProgress, time);
+    else if (sc.id === 4) drawMotionScene4(sceneProgress, time);
+    else if (sc.id === 5) drawMotionScene5(sceneProgress, time);
+    else if (sc.id === 6) drawMotionScene6(sceneProgress, time);
+    ctx.restore();
+
+    // 3. Reels Style Auto-Captions with Live Karaoke Word Highlighting
+    drawReelsCaptions(sc, sceneProgress);
+
+    // 4. Header Bar & Progress Line
+    drawHeader(sc, time);
+
+    // 5. Seamless Cinematic Transitions
+    if (document.getElementById('transitionToggle').checked) {
+        drawReelsTransition(sc, time);
+    }
+}
+
+// ANIMATED CHARACTER: PAK JOKO (PEDAGANG UMKM)
+function drawAnimatedShopkeeper(x, y, scale, emotion, time) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(scale, scale);
+
+    const bob = Math.sin(time * 4) * 5;
+    ctx.translate(0, bob);
+
+    // Torso / Batik Shirt / Apron
+    ctx.fillStyle = "#059669"; // Green merchant polo/apron
+    ctx.beginPath();
+    ctx.roundRect(-55, 45, 110, 110, 20);
+    ctx.fill();
+
+    // Apron strings / pocket
+    ctx.fillStyle = "#047857";
+    ctx.fillRect(-35, 75, 70, 45);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 12px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("UMKM", 0, 95);
+
+    // Head
+    ctx.fillStyle = "#fbcfe8"; // Fair skin tone
+    ctx.beginPath();
+    ctx.arc(0, 0, 48, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Black Hair with neat side part
+    ctx.fillStyle = "#1e293b";
+    ctx.beginPath();
+    ctx.arc(0, -12, 50, Math.PI, Math.PI * 2);
+    ctx.fill();
+
+    // Facial Expressions based on emotion
+    if (emotion === 'stressed') {
+        // Blinking worried eyes
+        const blink = Math.sin(time * 3) > 0.9 ? 1 : 8;
+        ctx.fillStyle = "#0f172a";
+        ctx.fillRect(-22, -4, 12, blink);
+        ctx.fillRect(10, -4, 12, blink);
+
+        // Angled worried eyebrows
+        ctx.strokeStyle = "#1e293b";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(-26, -18);
+        ctx.lineTo(-10, -12);
+        ctx.moveTo(10, -12);
+        ctx.lineTo(26, -18);
+        ctx.stroke();
+
+        // Wavy mouth
+        ctx.beginPath();
+        ctx.arc(0, 24, 12, Math.PI * 0.2, Math.PI * 0.8, true);
+        ctx.stroke();
+
+        // Scratching Hand
+        const handAngle = Math.sin(time * 8) * 0.2;
+        ctx.save();
+        ctx.translate(50, 10);
+        ctx.rotate(handAngle);
+        ctx.fillStyle = "#fbcfe8";
+        ctx.beginPath();
+        ctx.arc(0, 0, 16, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Sweat drops popping off head
+        const sweatY = -35 + ((time * 60) % 25);
+        ctx.font = "24px sans-serif";
+        ctx.fillText("💦", 45, sweatY);
+    } 
+    else if (emotion === 'panicked') {
+        // Wide open shock eyes
+        ctx.fillStyle = "#ffffff";
+        ctx.beginPath();
+        ctx.arc(-16, -2, 12, 0, Math.PI*2);
+        ctx.arc(16, -2, 12, 0, Math.PI*2);
+        ctx.fill();
+        ctx.fillStyle = "#0f172a";
+        ctx.beginPath();
+        ctx.arc(-16, -2, 6, 0, Math.PI*2);
+        ctx.arc(16, -2, 6, 0, Math.PI*2);
+        ctx.fill();
+
+        // Hands clutching cheeks
+        ctx.fillStyle = "#fbcfe8";
+        ctx.beginPath();
+        ctx.arc(-42, 12, 18, 0, Math.PI*2);
+        ctx.arc(42, 12, 18, 0, Math.PI*2);
+        ctx.fill();
+
+        // Open mouth in O shape
+        ctx.fillStyle = "#b91c1c";
+        ctx.beginPath();
+        ctx.arc(0, 22, 14, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    else if (emotion === 'happy') {
+        // Cheerful curved smiling eyes (^ ^)
+        ctx.strokeStyle = "#0f172a";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(-16, -2, 10, Math.PI, 0, false);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(16, -2, 10, Math.PI, 0, false);
+        ctx.stroke();
+
+        // Big warm smile
+        ctx.fillStyle = "#dc2626";
+        ctx.beginPath();
+        ctx.arc(0, 12, 18, 0, Math.PI, false);
+        ctx.fill();
+
+        // Double thumbs up hands bobbing
+        const thumbBob = Math.sin(time * 8) * 8;
+        ctx.font = "38px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("👍", -65, 30 + thumbBob);
+        ctx.fillText("👍", 65, 30 + thumbBob);
+    }
+
+    ctx.restore();
+}
+
+// INTERACTIVE SMARTPHONE APP SIMULATION (SI APLIKASINYA)
+function drawInteractivePhoneApp(x, y, scale, state, p, time) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(scale, scale);
+
+    const bob = Math.sin(time * 3) * 6;
+    ctx.translate(0, bob);
+
+    // Phone Body (Glossy Bezel with shadow)
+    ctx.shadowColor = "rgba(0, 0, 0, 0.6)";
+    ctx.shadowBlur = 30;
+    ctx.fillStyle = "#0f172a";
+    ctx.beginPath();
+    ctx.roundRect(-220, -360, 440, 720, 40);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Screen Border & Glass
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 6;
+    ctx.stroke();
+
+    // Screen Surface
+    ctx.fillStyle = "#09121f";
+    ctx.beginPath();
+    ctx.roundRect(-204, -344, 408, 688, 30);
+    ctx.fill();
+
+    // Dynamic Island / Top Camera Notch
+    ctx.fillStyle = "#000000";
+    ctx.beginPath();
+    ctx.roundRect(-50, -336, 100, 22, 11);
+    ctx.fill();
+
+    // App Header Bar
+    ctx.fillStyle = "rgba(6, 78, 59, 0.9)";
+    ctx.fillRect(-204, -305, 408, 65);
+    ctx.fillStyle = "#34d399";
+    ctx.font = "bold 20px 'Montserrat', sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("⚡ SmartStock AI", -180, -265);
+    ctx.font = "14px sans-serif";
+    ctx.fillStyle = "#ffffff";
+    ctx.textAlign = "right";
+    ctx.fillText("12:00 • 5G 100%", 180, -265);
+
+    // Screen Content based on state
+    if (state === 'dashboard') {
+        // Circular OmniSync Gauge
+        ctx.save();
+        ctx.translate(0, -90);
+        const spin = time * 2;
+        ctx.strokeStyle = "#10b981";
+        ctx.lineWidth = 10;
+        ctx.beginPath();
+        ctx.arc(0, 0, 75, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.strokeStyle = "#34d399";
+        ctx.lineWidth = 14;
+        ctx.beginPath();
+        ctx.arc(0, 0, 75, spin, spin + Math.PI * 1.2);
+        ctx.stroke();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "900 28px 'Montserrat', sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("SYNCED", 0, 8);
+        ctx.restore();
+
+        // Channel Status Cards
+        const channels = [
+            { name: "Shopee Toko", status: "Stok: 120 SKU", color: "#f97316", y: 40 },
+            { name: "TikTok Shop", status: "Stok: 120 SKU", color: "#ec4899", y: 120 },
+            { name: "Kasir Offline", status: "POS Aktif", color: "#10b981", y: 200 }
+        ];
+
+        channels.forEach(ch => {
+            ctx.fillStyle = "rgba(30, 41, 59, 0.9)";
+            ctx.beginPath();
+            ctx.roundRect(-180, ch.y, 360, 60, 14);
+            ctx.fill();
+            ctx.strokeStyle = ch.color;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 18px 'Poppins', sans-serif";
+            ctx.textAlign = "left";
+            ctx.fillText(ch.name, -155, ch.y + 36);
+
+            ctx.fillStyle = "#34d399";
+            ctx.font = "bold 14px sans-serif";
+            ctx.textAlign = "right";
+            ctx.fillText("● " + ch.status, 155, ch.y + 36);
+        });
+    }
+    else if (state === 'scanner') {
+        // Camera Viewfinder Screen
+        ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
+        ctx.fillRect(-190, -220, 380, 480);
+
+        // Reticle Corner Brackets
+        ctx.strokeStyle = "#34d399";
+        ctx.lineWidth = 6;
+        const rw = 120, rh = 100;
+        // Top-Left
+        ctx.beginPath(); ctx.moveTo(-rw, -rh + 30); ctx.lineTo(-rw, -rh); ctx.lineTo(-rw + 30, -rh); ctx.stroke();
+        // Top-Right
+        ctx.beginPath(); ctx.moveTo(rw, -rh + 30); ctx.lineTo(rw, -rh); ctx.lineTo(rw - 30, -rh); ctx.stroke();
+        // Bottom-Left
+        ctx.beginPath(); ctx.moveTo(-rw, rh - 30); ctx.lineTo(-rw, rh); ctx.lineTo(-rw + 30, rh); ctx.stroke();
+        // Bottom-Right
+        ctx.beginPath(); ctx.moveTo(rw, rh - 30); ctx.lineTo(rw, rh); ctx.lineTo(rw - 30, rh); ctx.stroke();
+
+        // Moving Laser Beam inside camera
+        const laserY = -rh + ((Math.sin(time * 8) * 0.5 + 0.5) * (rh * 2));
+        ctx.strokeStyle = "#ef4444";
+        ctx.lineWidth = 4;
+        ctx.shadowColor = "#ef4444";
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.moveTo(-rw, laserY);
+        ctx.lineTo(rw, laserY);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Barcode lines in center
+        ctx.fillStyle = "#cbd5e1";
+        ctx.font = "60px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("||| | || ||| |", 0, 15);
+
+        // Detected Product Tag Popup
+        ctx.fillStyle = "rgba(6, 78, 59, 0.98)";
+        ctx.beginPath();
+        ctx.roundRect(-160, 140, 320, 80, 16);
+        ctx.fill();
+        ctx.strokeStyle = "#34d399";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 16px 'Poppins', sans-serif";
+        ctx.fillText("✅ Minyak Bimoli 2L", 0, 172);
+        ctx.fillStyle = "#a7f3d0";
+        ctx.font = "14px sans-serif";
+        ctx.fillText("Barcode Terverifikasi! (+24 Stok)", 0, 202);
+    }
+    else if (state === 'omnisync') {
+        // Realtime Stock Decrement Simulation
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "900 22px 'Montserrat', sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("LIVE SYNC STOK", 0, -200);
+
+        // POS Kasir Box
+        ctx.fillStyle = "rgba(16, 185, 129, 0.2)";
+        ctx.beginPath();
+        ctx.roundRect(-160, -160, 320, 80, 14);
+        ctx.fill();
+        ctx.strokeStyle = "#10b981";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 18px 'Poppins', sans-serif";
+        ctx.fillText("🏪 Kasir Toko: 1 Item Terjual", 0, -112);
+
+        // Animated Down Arrow
+        ctx.font = "36px sans-serif";
+        ctx.fillStyle = "#34d399";
+        ctx.fillText("⬇️", 0, -35);
+
+        // Channels Decrement Counters
+        const val = p > 0.5 ? 49 : 50;
+        ctx.fillStyle = "rgba(30, 41, 59, 0.95)";
+        ctx.beginPath();
+        ctx.roundRect(-160, 10, 320, 100, 16);
+        ctx.fill();
+        ctx.strokeStyle = "#34d399";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 18px sans-serif";
+        ctx.fillText("🛒 Shopee & TikTok Shop", 0, 45);
+        ctx.fillStyle = "#ffd700";
+        ctx.font = "900 32px 'Montserrat', sans-serif";
+        ctx.fillText(`Stok: ${val} Pcs`, 0, 88);
+
+        // Badge
+        ctx.fillStyle = "#10b981";
+        ctx.beginPath();
+        ctx.roundRect(-140, 150, 280, 50, 25);
+        ctx.fill();
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 16px 'Poppins', sans-serif";
+        ctx.fillText("NOL OVERSELLING! ✓", 0, 182);
+    }
+    else if (state === 'whatsapp') {
+        // WhatsApp Push Notification Drop
+        const dropY = -120 + Math.sin(time * 6) * 5;
+
+        ctx.fillStyle = "rgba(15, 23, 42, 0.98)";
+        ctx.beginPath();
+        ctx.roundRect(-180, dropY, 360, 200, 20);
+        ctx.fill();
+        ctx.strokeStyle = "#25d366"; // WhatsApp green
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        // WA Icon & Header
+        ctx.fillStyle = "#25d366";
+        ctx.font = "bold 18px 'Poppins', sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText("💬 WhatsApp • Sekarang", -155, dropY + 40);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 16px 'Poppins', sans-serif";
+        ctx.fillText("SmartStock Bot:", -155, dropY + 75);
+
+        ctx.fillStyle = "#cbd5e1";
+        ctx.font = "14px 'Poppins', sans-serif";
+        ctx.fillText("⚠️ Stok Beras sisa 3 karung!", -155, dropY + 105);
+        ctx.fillText("Waktunya kulakan ulang.", -155, dropY + 130);
+
+        // Button
+        ctx.fillStyle = "#25d366";
+        ctx.beginPath();
+        ctx.roundRect(-155, dropY + 148, 310, 38, 10);
+        ctx.fill();
+        ctx.fillStyle = "#000000";
+        ctx.font = "bold 14px 'Poppins', sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("Pesan Ulang ke Supplier ➔", 0, dropY + 172);
+    }
+
+    ctx.restore();
+}
+
+// HELPER: Radial Anime/Manga Action Speed Lines (Shock Hook Effect)
+function drawRadialSpeedLines(cx, cy, intensity, time) {
+    if (intensity <= 0.01) return;
+    ctx.save();
+    ctx.translate(cx, cy);
+    const numLines = 54;
+    for (let i = 0; i < numLines; i++) {
+        const baseAngle = (i / numLines) * Math.PI * 2;
+        const angle = baseAngle + Math.sin(time * 24 + i) * 0.015;
+        const length = 550 + ((i * 37) % 350);
+        const inner = 170 + ((i * 23) % 80);
+        
+        ctx.save();
+        ctx.rotate(angle);
+        const alpha = (0.2 + (Math.sin(time * 40 + i * 3) * 0.15 + 0.15)) * intensity;
+        ctx.strokeStyle = i % 4 === 0 ? `rgba(239, 68, 68, ${alpha * 0.9})` : `rgba(255, 255, 255, ${alpha})`;
+        ctx.lineWidth = 2 + (i % 3) * 3;
+        ctx.beginPath();
+        ctx.moveTo(inner, 0);
+        ctx.lineTo(inner + length, 0);
+        ctx.stroke();
+        ctx.restore();
+    }
+    ctx.restore();
+}
+
+// HELPER: 3D Tumbling Chaotic Paper Notes (Messy Ledger Flying Notes)
+function drawFloatingPaperNotes(p, time) {
+    const numNotes = 10;
+    for (let i = 0; i < numNotes; i++) {
+        const speed = 0.8 + (i % 4) * 0.3;
+        const cycle = ((p * 2.2 * speed + (i * 0.11)) % 1.0);
+        
+        const startX = W/2 + (i % 2 === 0 ? -1 : 1) * (140 + (i * 45) % 280);
+        const startY = 1180;
+        
+        const curX = startX + Math.sin(time * 2.5 + i * 1.8) * 80;
+        const curY = startY - cycle * 850;
+        
+        const alpha = cycle < 0.15 ? cycle / 0.15 : (cycle > 0.8 ? (1 - cycle) / 0.2 : 1.0);
+        
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
+        ctx.translate(curX, curY);
+        
+        const rotZ = Math.sin(time * 2.8 + i) * 0.5;
+        const rotY = Math.cos(time * 3.5 + i * 1.2);
+        ctx.rotate(rotZ);
+        ctx.scale(Math.max(0.25, Math.abs(rotY)), 1.0);
+        
+        ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
+        ctx.shadowBlur = 14;
+        ctx.shadowOffsetY = 10;
+        
+        const sheetW = 75 + (i % 3) * 15;
+        const sheetH = 95 + (i % 3) * 20;
+        ctx.fillStyle = i % 2 === 0 ? "#fefce8" : "#ffffff";
+        ctx.beginPath();
+        ctx.roundRect(-sheetW/2, -sheetH/2, sheetW, sheetH, 6);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        
+        ctx.strokeStyle = "#bfdbfe";
+        ctx.lineWidth = 1.5;
+        for (let yLine = -sheetH/2 + 18; yLine <= sheetH/2 - 18; yLine += 14) {
+            ctx.beginPath();
+            ctx.moveTo(-sheetW/2 + 8, yLine);
+            ctx.lineTo(sheetW/2 - 8, yLine);
+            ctx.stroke();
+        }
+        
+        ctx.strokeStyle = "#fca5a5";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(-sheetW/2 + 20, -sheetH/2 + 4);
+        ctx.lineTo(-sheetW/2 + 20, sheetH/2 - 4);
+        ctx.stroke();
+        
+        if (i % 3 === 0) {
+            ctx.fillStyle = "#ef4444";
+            ctx.font = "bold 22px 'Montserrat', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("❌", 4, 8);
+        } else if (i % 3 === 1) {
+            ctx.fillStyle = "#dc2626";
+            ctx.font = "900 13px 'Poppins', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("STOK ??", 8, 5);
+        } else {
+            ctx.fillStyle = "#b91c1c";
+            ctx.font = "900 12px 'Poppins', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("-12 PCS", 8, 5);
+        }
+        
+        ctx.restore();
+    }
+}
+
+// HELPER: Comic Stress Vein (💢)
+function drawStressVein(x, y, scale, time) {
+    ctx.save();
+    ctx.translate(x, y);
+    const pulse = 1.0 + Math.sin(time * 14) * 0.22;
+    ctx.scale(scale * pulse, scale * pulse);
+    ctx.strokeStyle = "#ef4444";
+    ctx.lineWidth = 6;
+    ctx.lineCap = "round";
+    
+    const r = 16;
+    ctx.beginPath(); ctx.arc(-r/2, -r/2, r, 0, Math.PI * 0.5); ctx.stroke();
+    ctx.beginPath(); ctx.arc(r/2, -r/2, r, Math.PI * 0.5, Math.PI); ctx.stroke();
+    ctx.beginPath(); ctx.arc(r/2, r/2, r, Math.PI, Math.PI * 1.5); ctx.stroke();
+    ctx.beginPath(); ctx.arc(-r/2, r/2, r, Math.PI * 1.5, Math.PI * 2); ctx.stroke();
+    ctx.restore();
+}
+
+// HELPER: Interactive Audit Target Reticle on Desk Ledger
+function drawAuditTarget(x, y, p, time) {
+    if (p < 0.18) return;
+    const enterT = Math.min(1, (p - 0.18) / 0.12);
+    
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(easeOutBack(enterT), easeOutBack(enterT));
+    
+    const spin = time * 2;
+    
+    ctx.strokeStyle = "#ef4444";
+    ctx.lineWidth = 3.5;
+    ctx.beginPath();
+    ctx.setLineDash([14, 10]);
+    ctx.arc(0, 0, 56, spin, spin + Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(0, -66); ctx.lineTo(0, -46);
+    ctx.moveTo(0, 46); ctx.lineTo(0, 66);
+    ctx.moveTo(-66, 0); ctx.lineTo(-46, 0);
+    ctx.moveTo(46, 0); ctx.lineTo(66, 0);
+    ctx.stroke();
+    
+    const pulseR = 18 + Math.sin(time * 8) * 8;
+    ctx.fillStyle = "rgba(239, 68, 68, 0.35)";
+    ctx.beginPath();
+    ctx.arc(0, 0, pulseR, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.strokeStyle = "#f87171";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(35, -35);
+    ctx.lineTo(110, -90);
+    ctx.lineTo(310, -90);
+    ctx.stroke();
+    
+    ctx.fillStyle = "rgba(185, 28, 28, 0.96)";
+    ctx.beginPath();
+    ctx.roundRect(110, -125, 220, 55, 12);
+    ctx.fill();
+    ctx.strokeStyle = "#fecaca";
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "900 18px 'Montserrat', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("⚠️ SELISIH STOK -12!", 220, -97);
+    ctx.font = "bold 13px 'Poppins', sans-serif";
+    ctx.fillStyle = "#fef08a";
+    ctx.fillText("Buku ≠ Fisik Rak", 220, -78);
+    
+    ctx.restore();
+}
+
+// Scene 1: Problem (Animated Motion Graphics on Image - NO CARTOON OVERLAY)
+function drawMotionScene1(p, time) {
+    // 1. Radial Action Speed Lines on Shock Hook (p = 0.08 to 0.35)
+    let speedIntensity = 0;
+    if (p >= 0.08 && p < 0.16) {
+        speedIntensity = (p - 0.08) / 0.08;
+    } else if (p >= 0.16 && p < 0.35) {
+        speedIntensity = 1 - (p - 0.16) / 0.19;
+    }
+    if (speedIntensity > 0) {
+        drawRadialSpeedLines(W/2, 620, speedIntensity, time);
+    }
+
+    // 2. Stress Comic FX Anchored to Pak Joko in the Image (Head around W/2, 590)
+    if (p > 0.06) {
+        drawStressVein(W/2 + 130, 530, 1.2, time);
+        
+        const sweat1Y = 560 + Math.sin(time * 9) * 16;
+        const sweat2Y = 580 + Math.cos(time * 11) * 16;
+        ctx.font = "34px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("💦", W/2 + 140, sweat1Y);
+        ctx.fillText("💦", W/2 - 135, sweat2Y);
+        
+        const qT = Math.min(1, Math.max(0, (p - 0.10) / 0.10));
+        if (qT > 0) {
+            ctx.save();
+            ctx.translate(W/2 - 150, 480);
+            ctx.scale(easeOutBack(qT), easeOutBack(qT));
+            ctx.font = "900 48px 'Montserrat', sans-serif";
+            ctx.fillStyle = "#ef4444";
+            ctx.shadowColor = "rgba(0,0,0,0.8)";
+            ctx.shadowBlur = 15;
+            ctx.fillText("❓", 0, 0);
+            ctx.restore();
+            
+            ctx.save();
+            ctx.translate(W/2 + 170, 460);
+            ctx.scale(easeOutBack(qT), easeOutBack(qT));
+            ctx.font = "900 48px 'Montserrat', sans-serif";
+            ctx.fillStyle = "#ffd700";
+            ctx.shadowColor = "rgba(0,0,0,0.8)";
+            ctx.shadowBlur = 15;
+            ctx.fillText("❗", 0, 0);
+            ctx.restore();
+        }
+    }
+
+    // 3. Interactive 3D Tumbling Paper Notes flying from messy desk
+    drawFloatingPaperNotes(p, time);
+
+    // 4. Audit Target Reticle on Desk Ledger (Locks onto manual book around X=390, Y=1060)
+    drawAuditTarget(390, 1060, p, time);
+
+    // 5. Kinetic Punch Headline at Top (Safe zone Y = 290 to 440)
+    const titleT = Math.min(1, Math.max(0, (p - 0.06) / 0.12));
+    ctx.save();
+    ctx.translate(W/2, 290);
+    ctx.scale(easeOutBack(titleT), easeOutBack(titleT));
+    
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "900 56px 'Montserrat', sans-serif";
+    ctx.textAlign = "center";
+    ctx.shadowColor = "rgba(0,0,0,0.9)";
+    ctx.shadowBlur = 24;
+    ctx.fillText("STOK BARANG", 0, 0);
+    ctx.shadowBlur = 0;
+
+    // Angled Danger Sticker Banner
+    const stickerT = Math.min(1, Math.max(0, (p - 0.08) / 0.10));
+    ctx.save();
+    ctx.translate(0, 75);
+    ctx.scale(easeOutBack(stickerT), easeOutBack(stickerT));
+    ctx.rotate(-0.035);
+    ctx.fillStyle = "#dc2626";
+    ctx.fillRect(-410, -42, 820, 84);
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 4;
+    ctx.strokeRect(-410, -42, 820, 84);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "900 44px 'Montserrat', sans-serif";
+    ctx.fillText("MASIH DICATAT MANUAL?! 😱", 0, 15);
+    ctx.restore();
+    ctx.restore();
+
+    // 6. Sleek Problem Card at Bottom (Safe zone Y = 1260, above voice captions)
+    const cardT = Math.min(1, Math.max(0, (p - 0.20) / 0.16));
+    ctx.save();
+    ctx.translate(W/2, 1260);
+    ctx.scale(easeOutBack(cardT), easeOutBack(cardT));
+
+    ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
+    ctx.beginPath();
+    ctx.roundRect(-440, -65, 880, 130, 20);
+    ctx.fill();
+    ctx.strokeStyle = "rgba(239, 68, 68, 0.85)";
+    ctx.lineWidth = 3.5;
+    ctx.stroke();
+
+    ctx.fillStyle = "#fef08a";
+    ctx.font = "800 28px 'Poppins', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("📖 BUKU LUSUH & NOTA SERING HILANG", 0, -12);
+
+    ctx.fillStyle = "#f8fafc";
+    ctx.font = "600 22px 'Poppins', sans-serif";
+    ctx.fillText("Stok Fisik di Rak ≠ Catatan di Buku (Rawan Rugi!)", 0, 30);
+    ctx.restore();
+}
+
+// Scene 2: Impact (Split Screen Panic - NO CARTOON OVERLAY)
+function drawMotionScene2(p, time) {
+    // Red Alert Hazard Vignette Strobe
+    const strobe = (Math.sin(time * 8) * 0.5 + 0.5) * 0.25;
+    ctx.fillStyle = `rgba(220, 38, 38, ${strobe})`;
+    ctx.fillRect(0, 0, W, H);
+
+    // Canceled Order Modal Popup in Center
+    const alertT = Math.min(1, p / 0.18);
+    ctx.save();
+    ctx.translate(W/2, 620);
+    ctx.scale(easeOutBack(alertT), easeOutBack(alertT));
+    ctx.fillStyle = "rgba(15, 23, 42, 0.96)";
+    ctx.beginPath();
+    ctx.roundRect(-360, -110, 720, 220, 24);
+    ctx.fill();
+    ctx.strokeStyle = "#ef4444";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    ctx.fillStyle = "#ef4444";
+    ctx.font = "900 36px 'Montserrat', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("⚠️ PESANAN DIBATALKAN!", 0, -50);
+
+    ctx.font = "700 24px 'Poppins', sans-serif";
+    ctx.fillStyle = "#fef08a";
+    ctx.fillText('"Maaf, Stok Fisik Ternyata Habis"', 0, -2);
+
+    ctx.fillStyle = "#fca5a5";
+    ctx.font = "bold 20px 'Poppins', sans-serif";
+    ctx.fillText("Uang Pembeli Dikembalikan (Refund) ❌", 0, 42);
+
+    // 1-Star Badge inside Modal
+    ctx.fillStyle = "rgba(239, 68, 68, 0.25)";
+    ctx.beginPath();
+    ctx.roundRect(-200, 62, 400, 38, 12);
+    ctx.fill();
+    ctx.fillStyle = "#ffd700";
+    ctx.font = "bold 18px 'Poppins', sans-serif";
+    ctx.fillText("⭐ 1.0 Toko Kehilangan Reputasi", 0, 88);
+    ctx.restore();
+
+    // Tumbling 3D flying money & coins
+    for (let i = 0; i < 7; i++) {
+        const my = 1200 - ((p * 450 + i * 130) % 900);
+        const mx = 120 + i * 140 + Math.sin(p * 8 + i) * 50;
+        ctx.font = i % 2 === 0 ? "46px sans-serif" : "36px sans-serif";
+        ctx.fillText(i % 2 === 0 ? "💸" : "🪙", mx, my);
+    }
+}
+
+// Scene 3: Solution (SmartStock AI Phone App on Desk - NO CARTOON OVERLAY)
+function drawMotionScene3(p, time) {
+    // Cloud Omnichannel Tech Particle Streams flowing into phone
+    for (let i = 0; i < 12; i++) {
+        const streamY = 400 + ((p * 500 + i * 70) % 600);
+        const streamX = W/2 + (i % 2 === 0 ? -1 : 1) * (260 + Math.sin(p * 6 + i) * 60);
+        ctx.fillStyle = "#34d399";
+        ctx.beginPath();
+        ctx.arc(streamX, streamY, 4, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    // Glowing Omnichannel Tag Banner at Top
+    const bannerT = Math.min(1, p / 0.15);
+    ctx.save();
+    ctx.translate(W/2, 280);
+    ctx.scale(easeOutBack(bannerT), easeOutBack(bannerT));
+    ctx.fillStyle = "rgba(6, 78, 59, 0.95)";
+    ctx.beginPath();
+    ctx.roundRect(-380, -45, 760, 90, 18);
+    ctx.fill();
+    ctx.strokeStyle = "#34d399";
+    ctx.lineWidth = 3.5;
+    ctx.stroke();
+
+    ctx.fillStyle = "#fef08a";
+    ctx.font = "900 24px 'Montserrat', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("SOLUSI DIGITAL TERPADU", 0, -10);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 28px 'Poppins', sans-serif";
+    ctx.fillText("⚡ SmartStock AI & OmniSync UMKM™", 0, 26);
+    ctx.restore();
+
+    // Central Interactive Phone App (Dashboard View)
+    drawInteractivePhoneApp(W/2, 700, 1.05, 'dashboard', p, time);
+}
+
+// Scene 4: Live App Demo (Scanner -> OmniSync -> WhatsApp)
+function drawMotionScene4(p, time) {
+    let mode = 'scanner';
+    let stepTitle = "Langkah 1: Scan Barcode via Kamera HP ⚡";
+    if (p >= 0.33 && p < 0.66) {
+        mode = 'omnisync';
+        stepTitle = "Langkah 2: Auto-Sync Realtime Kasir & E-Commerce 🔄";
+    } else if (p >= 0.66) {
+        mode = 'whatsapp';
+        stepTitle = "Langkah 3: Notifikasi WhatsApp Kulakan Otomatis 💬";
+    }
+
+    // Interactive Phone App in Action!
+    drawInteractivePhoneApp(W/2, 660, 1.05, mode, p, time);
+
+    // Active Step Pill Indicator
+    ctx.save();
+    ctx.translate(W/2, 1140);
+    ctx.fillStyle = "rgba(6, 78, 59, 0.95)";
+    ctx.beginPath();
+    ctx.roundRect(-440, -45, 880, 90, 18);
+    ctx.fill();
+    ctx.strokeStyle = "#34d399";
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 30px 'Poppins', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(stepTitle, 0, 10);
+    ctx.restore();
+}
+
+// Scene 5: Benefits & Results (Happy Pak Joko - NO CARTOON OVERLAY)
+function drawMotionScene5(p, time) {
+    // Sunshine Light Rays radiating from top
+    ctx.save();
+    ctx.translate(W/2, 380);
+    for (let r = 0; r < 12; r++) {
+        const rayAngle = (r / 12) * Math.PI * 2 + time * 0.2;
+        ctx.save();
+        ctx.rotate(rayAngle);
+        ctx.fillStyle = "rgba(255, 215, 0, 0.08)";
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(-60, 900);
+        ctx.lineTo(60, 900);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+    }
+    ctx.restore();
+
+    // Counter Badge: HEMAT WAKTU 80%
+    const statVal = Math.min(80, Math.floor(easeInOutCubic(Math.min(1, p / 0.45)) * 80));
+    ctx.save();
+    ctx.translate(W/2, 360);
+    ctx.fillStyle = "rgba(6, 78, 59, 0.95)";
+    ctx.beginPath();
+    ctx.roundRect(-380, -60, 760, 120, 24);
+    ctx.fill();
+    ctx.strokeStyle = "#34d399";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    ctx.fillStyle = "#fef08a";
+    ctx.font = "900 52px 'Montserrat', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(`⚡ HEMAT WAKTU ${statVal}%`, 0, 18);
+    ctx.restore();
+
+    // 5 Stars Popping in Sequentially
+    const starCount = Math.min(5, Math.floor(p * 10));
+    let starsStr = "";
+    for (let s = 0; s < 5; s++) {
+        starsStr += s < starCount ? "⭐ " : "☆ ";
+    }
+    ctx.font = "56px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(starsStr.trim(), W/2, 490);
+
+    // Floating Profit Badge
+    const profitT = Math.min(1, Math.max(0, (p - 0.25) / 0.2));
+    ctx.save();
+    ctx.translate(W/2, 1180);
+    ctx.scale(easeOutBack(profitT), easeOutBack(profitT));
+    ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
+    ctx.beginPath();
+    ctx.roundRect(-380, -50, 760, 100, 20);
+    ctx.fill();
+    ctx.strokeStyle = "#10b981";
+    ctx.lineWidth = 3.5;
+    ctx.stroke();
+
+    ctx.fillStyle = "#34d399";
+    ctx.font = "900 28px 'Montserrat', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("📈 OMZET & REPUTASI TOKO NAIK!", 0, -8);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 20px 'Poppins', sans-serif";
+    ctx.fillText("Stok Akurat 100% • Pelanggan Puas & Repeat Order", 0, 26);
+    ctx.restore();
+
+    // Colorful Confetti
+    for (let c = 0; c < 36; c++) {
+        const cx = (c * 30 + Math.sin(p * 6 + c) * 40) % W;
+        const cy = ((p * 500 + c * 60) % H);
+        const colors = ['#ffd700', '#34d399', '#3b82f6', '#10b981', '#f59e0b', '#ec4899'];
+        ctx.fillStyle = colors[c % colors.length];
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(p * 8 + c);
+        ctx.fillRect(-8, -5, 16, 10);
+        ctx.restore();
+    }
+}
+
+// Scene 6: Outro (Student Identity & Slogan - NO CARTOON OVERLAY)
+function drawMotionScene6(p, time) {
+    const sloganT = Math.min(1, p / 0.2);
+    ctx.save();
+    ctx.translate(W/2, 480);
+    ctx.scale(easeOutBack(sloganT), easeOutBack(sloganT));
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "900 48px 'Montserrat', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("UMKM NAIK KELAS,", 0, 0);
+    ctx.fillStyle = "#34d399";
+    ctx.fillText("KELOLA STOK CEPAT & PAS!", 0, 70);
+    ctx.restore();
+
+    // Student ID Card
+    const cardT = Math.min(1, Math.max(0, (p - 0.15) / 0.25));
+    const cardY = 740 + (1 - easeOutBack(cardT)) * 400;
+
+    ctx.save();
+    ctx.translate(W/2, cardY);
+    ctx.fillStyle = "rgba(6, 78, 59, 0.95)";
+    ctx.beginPath();
+    ctx.roundRect(-440, 0, 880, 290, 24);
+    ctx.fill();
+    ctx.strokeStyle = "#ffd700";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    ctx.fillStyle = "#fef08a";
+    ctx.font = "bold 26px 'Poppins', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("TUGAS UJIAN TENGAH SEMESTER (UTS)", 0, 55);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "900 44px 'Montserrat', sans-serif";
+    ctx.fillText("Moch Ramadhan Sulaeman", 0, 125);
+
+    ctx.fillStyle = "#ffd700";
+    ctx.font = "bold 34px 'Poppins', sans-serif";
+    ctx.fillText("NPM: 2514101062", 0, 182);
+    
+    ctx.fillStyle = "#a7f3d0";
+    ctx.font = "26px 'Poppins', sans-serif";
+    ctx.fillText("Sistem Informasi & Bisnis Digital", 0, 235);
+    ctx.restore();
+}
+
+// INSTAGRAM REELS VIRAL KARAOKE AUTO-CAPTIONS
+function drawReelsCaptions(sc, sceneProgress) {
+    const boxY = H - 340;
+    const boxH = 220;
+
+    ctx.fillStyle = "rgba(11, 15, 25, 0.94)";
+    ctx.fillRect(40, boxY, W - 80, boxH);
+    ctx.strokeStyle = "rgba(16, 185, 129, 0.4)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(40, boxY, W - 80, boxH);
+
+    ctx.fillStyle = "#ffd700";
+    ctx.font = "800 20px 'Montserrat', sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("🎙️ VOICE OVER (NARASI RESMI):", 70, boxY + 38);
+
+    const words = sc.narration.split(' ');
+    const activeWordIndex = Math.min(words.length - 1, Math.floor(sceneProgress * words.length * 1.05));
+
+    ctx.font = "700 26px 'Poppins', sans-serif";
+    let curX = 70;
+    let curY = boxY + 82;
+    const maxLineW = W - 140;
+    const lineH = 36;
+
+    for (let i = 0; i < words.length; i++) {
+        const w = words[i] + ' ';
+        const wordWidth = ctx.measureText(w).width;
+
+        if (curX + wordWidth > 70 + maxLineW) {
+            curX = 70;
+            curY += lineH;
+        }
+
+        if (i === activeWordIndex) {
+            ctx.fillStyle = "#fef08a";
+            ctx.font = "900 28px 'Montserrat', sans-serif";
+            ctx.fillText(w, curX, curY);
+            ctx.font = "700 26px 'Poppins', sans-serif";
+        } else if (i < activeWordIndex) {
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText(w, curX, curY);
+        } else {
+            ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
+            ctx.fillText(w, curX, curY);
+        }
+
+        curX += wordWidth;
+    }
+}
+
+// SEAMLESS REELS TRANSITION
+function drawReelsTransition(sc, time) {
+    if (time < 0.85) {
+        const openT = time / 0.85;
+        const curtainH = (1 - easeInOutCubic(openT)) * (H / 2);
+        ctx.save();
+        ctx.fillStyle = "#064e3b";
+        ctx.fillRect(0, 0, W, curtainH);
+        ctx.fillRect(0, H - curtainH, W, curtainH);
+        ctx.fillStyle = "#34d399";
+        ctx.fillRect(0, curtainH - 8, W, 8);
+        ctx.fillRect(0, H - curtainH, W, 8);
+        ctx.restore();
+    }
+
+    const timeRemaining = sc.end - time;
+    const transDur = 0.5;
+
+    if (timeRemaining < transDur && sc.id < 6) {
+        const t = 1 - (timeRemaining / transDur);
+        ctx.save();
+        let curtainX;
+        if (t <= 0.5) {
+            curtainX = easeInOutCubic(t * 2) * W;
+            ctx.fillStyle = "#064e3b";
+            ctx.fillRect(0, 0, curtainX, H);
+            ctx.fillStyle = "#34d399";
+            ctx.fillRect(curtainX - 16, 0, 16, H);
+        } else {
+            curtainX = easeInOutCubic((t - 0.5) * 2) * W;
+            ctx.fillStyle = "#064e3b";
+            ctx.fillRect(curtainX, 0, W - curtainX, H);
+            ctx.fillStyle = "#34d399";
+            ctx.fillRect(curtainX, 0, 16, H);
+        }
+        ctx.restore();
+
+        if (t < 0.15 && isPlaying) {
+            playSFX('whoosh');
+        }
+    }
+}
+
+function drawHeader(sc, time) {
+    ctx.fillStyle = "rgba(11, 15, 25, 0.94)";
+    ctx.fillRect(0, 0, W, 210);
+
+    const progressWidth = (time / totalDuration) * W;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+    ctx.fillRect(0, 0, W, 10);
+    ctx.fillStyle = "#10b981";
+    ctx.fillRect(0, 0, progressWidth, 10);
+
+    ctx.textAlign = "center";
+    ctx.fillStyle = sc.accent;
+    ctx.font = "900 38px 'Montserrat', sans-serif";
+    ctx.fillText(sc.title, W/2, 80);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "700 28px 'Poppins', sans-serif";
+    ctx.fillText(sc.sub, W/2, 135);
+
+    const mins = Math.floor(time / 60);
+    const secs = Math.floor(time % 60);
+    const timeStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    ctx.font = "bold 26px monospace";
+    ctx.fillStyle = "#ffd700";
+    ctx.textAlign = "right";
+    ctx.fillText(timeStr, W - 50, 80);
+}
+
+// Controls
+function togglePlay() {
+    initAudio();
+    isPlaying = !isPlaying;
+    const playText = document.getElementById('playText');
+    const playIcon = document.getElementById('playIcon');
+    const statusLabel = document.getElementById('statusLabel');
+
+    if (isPlaying) {
+        if (currentTime >= totalDuration) currentTime = 0;
+        playText.textContent = "Jeda Animasi";
+        playIcon.textContent = "⏸";
+        statusLabel.textContent = "Sedang Memutar";
+        statusLabel.className = "status-badge";
+        lastFrameTimestamp = performance.now();
+        animationFrameId = requestAnimationFrame(render);
+    } else {
+        stopPlayback();
+    }
+}
+
+function stopPlayback() {
+    isPlaying = false;
+    document.getElementById('playText').textContent = "Putar Animasi Reels (Preview)";
+    document.getElementById('playIcon').textContent = "▶";
+    document.getElementById('statusLabel').textContent = "Jeda";
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+}
+
+function restartVideo() {
+    stopPlayback();
+    if (isRecording) stopRecording();
+    currentTime = 0;
+    currentSpokenScene = -1;
+    drawScene(0);
+    updateUI();
+}
+
+function jumpTo(seconds) {
+    initAudio();
+    currentTime = seconds;
+    currentSpokenScene = -1;
+    drawScene(currentTime);
+    updateUI();
+    if (isPlaying) {
+        const sc = getCurrentScene();
+        triggerNarration(scenes.indexOf(sc));
+    }
+}
+
+function updateUI() {
+    const mins = Math.floor(currentTime / 60);
+    const secs = Math.floor(currentTime % 60);
+    document.getElementById('timerLabel').textContent = 
+        `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')} / 02:00`;
+}
+
+async function startRecording() {
+    initAudio();
+    if (isRecording) return;
+    
+    currentTime = 0;
+    currentSpokenScene = -1;
+    recordedChunks = [];
+
+    const useMic = document.getElementById('micToggle') && document.getElementById('micToggle').checked;
+    if (useMic) {
+        try {
+            micStream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
+            if (audioCtx && audioDest) {
+                micSourceNode = audioCtx.createMediaStreamSource(micStream);
+                micSourceNode.connect(audioDest);
+            }
+        } catch (err) {
+            console.warn("Mikrofon error / ditolak:", err);
+            alert("⚠️ Mikrofon tidak terdeteksi atau izin belum diberikan. Perekaman video akan tetap berjalan tanpa mic.");
+        }
+    }
+
+    const canvasStream = canvas.captureStream(30);
+    const combinedTracks = [...canvasStream.getVideoTracks()];
+    if (audioDest && audioDest.stream.getAudioTracks().length > 0) {
+        combinedTracks.push(...audioDest.stream.getAudioTracks());
+    }
+    const combinedStream = new MediaStream(combinedTracks);
+
+    let mimeType = 'video/webm;codecs=vp9';
+    if (!MediaRecorder.isTypeSupported(mimeType)) {
+        mimeType = 'video/webm';
+    }
+
+    try {
+        mediaRecorder = new MediaRecorder(combinedStream, { mimeType, videoBitsPerSecond: 4500000 });
+    } catch (e) {
+        mediaRecorder = new MediaRecorder(combinedStream);
+    }
+
+    mediaRecorder.ondataavailable = (event) => {
+        if (event.data && event.data.size > 0) {
+            recordedChunks.push(event.data);
+        }
+    };
+
+    mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `UTS_Video_Reel_Stok_UMKM_Moch_Ramadhan_Sulaeman_2514101062.webm`;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 100);
+
+        document.getElementById('statusLabel').textContent = "Video Berhasil Diunduh!";
+        document.getElementById('statusLabel').className = "status-badge";
+        document.getElementById('recordBtn').classList.remove('recording');
+        alert("🎉 Selesai! Video animasi Reels 'Stok UMKM Dicatat Manual' dengan audio rekaman telah berhasil diunduh!");
+    };
+
+    mediaRecorder.start(1000);
+    isRecording = true;
+    isPlaying = true;
+    document.getElementById('recordBtn').classList.add('recording');
+    document.getElementById('statusLabel').textContent = useMic ? "🔴 MEREKAM VIDEO + MIC..." : "🔴 MEREKAM VIDEO...";
+    document.getElementById('statusLabel').className = "status-badge rec";
+    document.getElementById('playText').textContent = "Sedang Merekam...";
+
+    lastFrameTimestamp = performance.now();
+    animationFrameId = requestAnimationFrame(render);
+}
+
+function stopRecording() {
+    if (!isRecording) return;
+    isRecording = false;
+    stopPlayback();
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+    }
+    if (micStream) {
+        micStream.getTracks().forEach(track => track.stop());
+        micStream = null;
+    }
+    if (micSourceNode) {
+        micSourceNode.disconnect();
+        micSourceNode = null;
+    }
+}
+
+window.onload = () => {
+    drawScene(0);
+};
+
+canvas.addEventListener('click', () => {
+    initAudio();
+    togglePlay();
+});
+</script>
+
+</body>
+</html>
