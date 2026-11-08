@@ -287,13 +287,14 @@
         </div>
 
         <label style="font-size: 13px; color: #94a3b8; display: block; margin-bottom: 8px;">Lompat ke Adegan Tertentu:</label>
-        <div class="scene-jumper">
-            <button class="scene-btn" onclick="jumpTo(0)">1. Hook (0s)</button>
-            <button class="scene-btn" onclick="jumpTo(15)">2. Masalah (15s)</button>
-            <button class="scene-btn" onclick="jumpTo(30)">3. Solusi (30s)</button>
-            <button class="scene-btn" onclick="jumpTo(50)">4. Demo Aplikasi (50s)</button>
-            <button class="scene-btn" onclick="jumpTo(75)">5. Hasil (75s)</button>
-            <button class="scene-btn" onclick="jumpTo(100)">6. Outro (100s)</button>
+        <div class="scene-jumper" style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+            <button class="scene-btn" onclick="jumpTo(0)">0. Flowchart (0s)</button>
+            <button class="scene-btn" onclick="jumpTo(18)">1. Masalah (18s)</button>
+            <button class="scene-btn" onclick="jumpTo(35)">2. Dampak (35s)</button>
+            <button class="scene-btn" onclick="jumpTo(52)">3. Solusi (52s)</button>
+            <button class="scene-btn" onclick="jumpTo(72)">4. Demo App (72s)</button>
+            <button class="scene-btn" onclick="jumpTo(92)">5. Manfaat (92s)</button>
+            <button class="scene-btn" onclick="jumpTo(107)">6. Outro (107s)</button>
         </div>
 
         <div class="info-box" style="margin-bottom: 15px;">
@@ -338,12 +339,21 @@ for (let i = 1; i <= 6; i++) {
     img.onload = () => { sceneImages[i] = img; };
 }
 
-// Storyboard Data (Naskah Narasi Gaya Reels: Padat, Jelas & Pas di Kotak)
+// Storyboard Data (Dengan Flowchart XMind Sebelum Animasi - Total 120 Detik)
 const scenes = [
     {
-        id: 1,
+        id: 0,
         start: 0,
-        end: 15,
+        end: 18,
+        title: "DIAGRAM ALIR SISTEM (XMIND)",
+        sub: "Arsitektur Bisnis SmartStock AI & OmniSync",
+        narration: "Sebelum masuk ke animasi, ini diagram alir sistem SmartStock AI berbasis XMind: dari barang supplier masuk, scan barcode AI, sinkronisasi otomatis ke kasir dan e-commerce, hingga pengingat kulakan otomatis via WhatsApp!",
+        accent: '#38bdf8'
+    },
+    {
+        id: 1,
+        start: 18,
+        end: 35,
         title: "MASALAH KLASIK UMKM",
         sub: "Stok Masih Dicatat Manual?",
         narration: "Stok barang UMKM masih dicatat di buku tulis dan nota kertas? Awas, rawan hilang, selisih hitung, dan bikin pusing pemilik toko!",
@@ -351,8 +361,8 @@ const scenes = [
     },
     {
         id: 2,
-        start: 15,
-        end: 30,
+        start: 35,
+        end: 52,
         title: "DAMPAK FATAL",
         sub: "Pesanan Dibatalkan, Modal Amblas!",
         narration: "Akibatnya fatal! Pesanan online masuk tapi stok fisik toko ternyata habis. Kena penalti bintang satu, pembeli kecewa, dan rugi jutaan rupiah!",
@@ -360,8 +370,8 @@ const scenes = [
     },
     {
         id: 3,
-        start: 30,
-        end: 50,
+        start: 52,
+        end: 72,
         title: "SOLUSI DIGITAL UMKM",
         sub: "SmartStock AI & OmniSync UMKM™",
         narration: "Solusinya: SmartStock AI! Aplikasi manajemen stok pintar yang otomatis menghubungkan kasir toko fisik dan seluruh online shop kamu dalam satu genggaman.",
@@ -369,8 +379,8 @@ const scenes = [
     },
     {
         id: 4,
-        start: 50,
-        end: 75,
+        start: 72,
+        end: 92,
         title: "DEMO APLIKASI CERDAS",
         sub: "Tiga Langkah Mudah Kelola Stok",
         narration: "Tiga langkah mudah: Scan barcode pakai kamera HP, stok otomatis tersinkron ke semua marketplace, dan dapatkan notifikasi WhatsApp saat stok menipis!",
@@ -378,8 +388,8 @@ const scenes = [
     },
     {
         id: 5,
-        start: 75,
-        end: 100,
+        start: 92,
+        end: 107,
         title: "HASIL & MANFAAT NYATA",
         sub: "Hemat Waktu 80%, Nol Pembatalan!",
         narration: "Hasilnya nyata! Hemat waktu pembukuan hingga 80%, nol pembatalan pesanan, dan pelanggan puas repeat order dengan rating bintang lima!",
@@ -387,7 +397,7 @@ const scenes = [
     },
     {
         id: 6,
-        start: 100,
+        start: 107,
         end: 120,
         title: "KESIMPULAN & PENUTUP",
         sub: "UMKM Naik Kelas, Kelola Stok Cepat & Pas!",
@@ -629,7 +639,8 @@ function drawScene(time) {
 
     // 2. Scene-Specific Motion Graphics (Moving Character & Interactive App)
     ctx.save();
-    if (sc.id === 1) drawMotionScene1(sceneProgress, time);
+    if (sc.id === 0) drawMotionSceneFlowchart(sceneProgress, time);
+    else if (sc.id === 1) drawMotionScene1(sceneProgress, time);
     else if (sc.id === 2) drawMotionScene2(sceneProgress, time);
     else if (sc.id === 3) drawMotionScene3(sceneProgress, time);
     else if (sc.id === 4) drawMotionScene4(sceneProgress, time);
@@ -1194,6 +1205,216 @@ function drawAuditTarget(x, y, p, time) {
     ctx.fillText("Buku ≠ Fisik Rak", 220, -78);
     
     ctx.restore();
+}
+
+// ==========================================
+// XMIND STYLE FLOWCHART RENDERER (SCENE 0)
+// ==========================================
+function drawXMindNode(x, y, w, h, icon, title, subtitle, grad1, grad2, borderCol, expandT) {
+    ctx.save();
+    ctx.translate(x, y);
+    const scale = easeOutBack(Math.min(1, Math.max(0, expandT)));
+    ctx.scale(scale, scale);
+
+    // Drop Shadow
+    ctx.shadowColor = "rgba(0, 0, 0, 0.45)";
+    ctx.shadowBlur = 18;
+    ctx.shadowOffsetY = 8;
+
+    // Body Gradient Fill
+    const grad = ctx.createLinearGradient(-w/2, 0, w/2, 0);
+    grad.addColorStop(0, grad1);
+    grad.addColorStop(1, grad2);
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.roundRect(-w/2, -h/2, w, h, 18);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Border Outline with subtle glow
+    ctx.strokeStyle = borderCol;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // Icon Circle Badge on the Left
+    const iconR = h * 0.35;
+    const iconX = -w/2 + iconR + 14;
+    ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+    ctx.beginPath();
+    ctx.arc(iconX, 0, iconR, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    ctx.font = `${Math.floor(iconR * 1.2)}px sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(icon, iconX, 1);
+
+    // Title & Subtitle Typography
+    const textStartX = iconX + iconR + 16;
+    ctx.textBaseline = "alphabetic";
+    ctx.textAlign = "left";
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "900 20px 'Montserrat', sans-serif";
+    ctx.fillText(title, textStartX, subtitle ? -5 : 7);
+
+    if (subtitle) {
+        ctx.fillStyle = "#e2e8f0";
+        ctx.font = "600 13px 'Poppins', sans-serif";
+        ctx.fillText(subtitle, textStartX, 17);
+    }
+
+    ctx.restore();
+}
+
+function drawXMindBranch(x1, y1, x2, y2, color, time, active) {
+    ctx.save();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = active ? 4 : 2.5;
+    ctx.beginPath();
+    const midY = (y1 + y2) / 2;
+    ctx.moveTo(x1, y1);
+    ctx.bezierCurveTo(x1, midY, x2, midY, x2, y2);
+    ctx.stroke();
+
+    // Data pulse particle traveling along curve
+    const tPulse = (time * 1.8) % 1.0;
+    const px = Math.pow(1-tPulse, 3)*x1 + 3*Math.pow(1-tPulse, 2)*tPulse*x1 + 3*(1-tPulse)*Math.pow(tPulse, 2)*x2 + Math.pow(tPulse, 3)*x2;
+    const py = Math.pow(1-tPulse, 3)*y1 + 3*Math.pow(1-tPulse, 2)*tPulse*midY + 3*(1-tPulse)*Math.pow(tPulse, 2)*midY + Math.pow(tPulse, 3)*y2;
+
+    ctx.fillStyle = "#ffffff";
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 12;
+    ctx.beginPath();
+    ctx.arc(px, py, active ? 5 : 3.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+}
+
+// Scene 0: Flowchart Sistem Berbasis XMind (Sebelum Masuk ke Animasi Cerita)
+function drawMotionSceneFlowchart(p, time) {
+    // 1. XMind Blueprint Dot Matrix Background
+    ctx.fillStyle = "#070c18";
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "rgba(56, 189, 248, 0.12)";
+    for (let gx = 30; gx < W; gx += 45) {
+        for (let gy = 230; gy < 1550; gy += 45) {
+            ctx.beginPath();
+            ctx.arc(gx, gy, 1.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // 2. Header Banner: FLOWCHART PROSES BISNIS (XMIND)
+    const hT = Math.min(1, p / 0.08);
+    ctx.save();
+    ctx.translate(W/2, 265);
+    ctx.scale(easeOutBack(hT), easeOutBack(hT));
+    ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
+    ctx.beginPath();
+    ctx.roundRect(-420, -34, 840, 68, 16);
+    ctx.fill();
+    ctx.strokeStyle = "#38bdf8";
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    ctx.fillStyle = "#ffd700";
+    ctx.font = "900 16px 'Montserrat', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("📋 DIAGRAM ALIR SISTEM (XMIND FLOWCHART)", 0, -4);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 18px 'Poppins', sans-serif";
+    ctx.fillText("Arsitektur SmartStock AI & OmniSync UMKM™", 0, 19);
+    ctx.restore();
+
+    // Step Timing Expansion
+    const t1 = Math.min(1, Math.max(0, (p - 0.04) / 0.12));
+    const t2 = Math.min(1, Math.max(0, (p - 0.16) / 0.12));
+    const t3 = Math.min(1, Math.max(0, (p - 0.28) / 0.12));
+    const t4 = Math.min(1, Math.max(0, (p - 0.42) / 0.12));
+    const t5 = Math.min(1, Math.max(0, (p - 0.60) / 0.12));
+    const t6 = Math.min(1, Math.max(0, (p - 0.78) / 0.12));
+
+    // Connectors (drawn behind nodes)
+    if (t2 > 0) drawXMindBranch(W/2, 395, W/2, 485, "#38bdf8", time, true);
+    if (t3 > 0) drawXMindBranch(W/2, 555, W/2, 645, "#60a5fa", time, true);
+    if (t4 > 0) {
+        // Fork from Core to 4A (Offline) and 4B (Online)
+        drawXMindBranch(W/2, 725, 310, 805, "#34d399", time, true);
+        drawXMindBranch(W/2, 725, 770, 805, "#34d399", time, true);
+        // Merge from 4A and 4B to Sync Badge
+        drawXMindBranch(310, 875, W/2, 970, "#f59e0b", time, true);
+        drawXMindBranch(770, 875, W/2, 970, "#ec4899", time, true);
+    }
+    if (t5 > 0) {
+        drawXMindBranch(W/2, 1030, W/2, 1115, "#10b981", time, true);
+        drawXMindBranch(W/2, 1195, 320, 1275, "#ef4444", time, true);
+        drawXMindBranch(W/2, 1195, 760, 1275, "#10b981", time, true);
+    }
+    if (t6 > 0) {
+        drawXMindBranch(320, 1345, W/2, 1430, "#a855f7", time, true);
+        drawXMindBranch(760, 1345, W/2, 1430, "#a855f7", time, true);
+    }
+
+    // Node 1: Input Barang Supplier
+    if (t1 > 0) {
+        drawXMindNode(W/2, 360, 700, 70, "📦", "1. BARANG DARI SUPPLIER TIBA", "Faktur pembelian & stok fisik produk baru masuk", "#0891b2", "#0e7490", "#22d3ee", t1);
+    }
+
+    // Node 2: Scan Barcode / OCR Nota via Kamera HP
+    if (t2 > 0) {
+        drawXMindNode(W/2, 520, 700, 70, "⚡", "2. SCAN KAMERA HP (AI OCR)", "Otomatis membaca nama SKU, jumlah & harga modal", "#2563eb", "#1d4ed8", "#60a5fa", t2);
+    }
+
+    // Node 3: Cloud Database & OmniSync Core
+    if (t3 > 0) {
+        drawXMindNode(W/2, 685, 740, 80, "☁️", "3. CLOUD DATABASE & OMNISYNC", "Pusat inventaris terenkripsi sinkronisasi real-time", "#059669", "#047857", "#34d399", t3);
+    }
+
+    // Nodes 4A & 4B: Kanal Kasir Offline & Online Marketplace
+    if (t4 > 0) {
+        drawXMindNode(310, 840, 420, 70, "🏪", "KASIR TOKO (POS)", "Penjualan offline toko", "#d97706", "#b45309", "#fbbf24", t4);
+        drawXMindNode(770, 840, 420, 70, "🛒", "E-COMMERCE", "Shopee, TikTok Shop, Tokped", "#db2777", "#be185d", "#f472b6", t4);
+
+        // Merge Sync Badge
+        ctx.save();
+        ctx.translate(W/2, 1000);
+        ctx.scale(easeOutBack(t4), easeOutBack(t4));
+        ctx.fillStyle = "rgba(6, 78, 59, 0.96)";
+        ctx.beginPath();
+        ctx.roundRect(-310, -30, 620, 60, 30);
+        ctx.fill();
+        ctx.strokeStyle = "#34d399";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 18px 'Poppins', sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("🔄 AUTO-SYNC: POTONG STOK SERENTAK", 0, -3);
+        ctx.fillStyle = "#fef08a";
+        ctx.font = "900 13px 'Montserrat', sans-serif";
+        ctx.fillText("NOL OVERSELLING & DATA 100% COCOK", 0, 16);
+        ctx.restore();
+    }
+
+    // Node 5: Decision (Cek Batas Minimum Stok)
+    if (t5 > 0) {
+        drawXMindNode(W/2, 1155, 720, 76, "❓", "4. CEK BATAS MINIMUM STOK (AI)", "Apakah sisa stok di rak < batas aman kulakan?", "#ca8a04", "#a16207", "#fde047", t5);
+
+        // Branch 5A (Jika YA: WhatsApp Bot)
+        drawXMindNode(320, 1310, 420, 70, "💬", "[YA] BOT WHATSAPP", "Peringatan kulakan otomatis ke pemilik", "#dc2626", "#b91c1c", "#f87171", t5);
+
+        // Branch 5B (Jika TIDAK: Stok Aman)
+        drawXMindNode(760, 1310, 420, 70, "✅", "[TIDAK] STOK AMAN", "Laporan rapi & inventaris terkontrol", "#16a34a", "#15803d", "#86efac", t5);
+    }
+
+    // Node 6: Output & Manfaat Sukses
+    if (t6 > 0) {
+        drawXMindNode(W/2, 1465, 740, 70, "🎯", "5. HASIL: 100% OPERASIONAL EFISIEN", "Hemat waktu 80% • Nol pembatalan • Bisnis naik kelas!", "#7c3aed", "#6d28d9", "#c084fc", t6);
+    }
 }
 
 // Scene 1: Problem (Animated Motion Graphics on Image - NO CARTOON OVERLAY)
