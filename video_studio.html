@@ -1769,13 +1769,30 @@ async function startRecording() {
     }
     const combinedStream = new MediaStream(combinedTracks);
 
-    let mimeType = 'video/webm;codecs=vp9';
-    if (!MediaRecorder.isTypeSupported(mimeType)) {
-        mimeType = 'video/webm';
+    // Select best supported format (prioritize MP4 for iOS / iPhone Safari)
+    let selectedMime = '';
+    let fileExt = 'mp4';
+    const supportedCandidates = [
+        'video/mp4;codecs=avc1,mp4a.40.2',
+        'video/mp4;codecs=avc1',
+        'video/mp4;codecs=h264',
+        'video/mp4',
+        'video/webm;codecs=h264,opus',
+        'video/webm;codecs=vp9,opus',
+        'video/webm;codecs=vp8,opus',
+        'video/webm'
+    ];
+    for (const cand of supportedCandidates) {
+        if (MediaRecorder.isTypeSupported(cand)) {
+            selectedMime = cand;
+            fileExt = cand.includes('mp4') ? 'mp4' : 'webm';
+            break;
+        }
     }
+    const recOptions = selectedMime ? { mimeType: selectedMime, videoBitsPerSecond: 4500000 } : {};
 
     try {
-        mediaRecorder = new MediaRecorder(combinedStream, { mimeType, videoBitsPerSecond: 4500000 });
+        mediaRecorder = new MediaRecorder(combinedStream, recOptions);
     } catch (e) {
         mediaRecorder = new MediaRecorder(combinedStream);
     }
@@ -1787,12 +1804,14 @@ async function startRecording() {
     };
 
     mediaRecorder.onstop = () => {
-        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const actualType = mediaRecorder.mimeType || selectedMime || 'video/mp4';
+        const actualExt = actualType.includes('mp4') ? 'mp4' : (actualType.includes('webm') ? 'webm' : fileExt);
+        const blob = new Blob(recordedChunks, { type: actualType });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
-        a.download = `UTS_Video_Reel_Stok_UMKM_Moch_Ramadhan_Sulaeman_2514101062.webm`;
+        a.download = `UTS_Video_Reel_Stok_UMKM_Moch_Ramadhan_Sulaeman_2514101062.${actualExt}`;
         document.body.appendChild(a);
         a.click();
         setTimeout(() => {
@@ -1803,7 +1822,7 @@ async function startRecording() {
         document.getElementById('statusLabel').textContent = "Video Berhasil Diunduh!";
         document.getElementById('statusLabel').className = "status-badge";
         document.getElementById('recordBtn').classList.remove('recording');
-        alert("🎉 Selesai! Video animasi Reels 'Stok UMKM Dicatat Manual' dengan audio rekaman telah berhasil diunduh!");
+        alert("🎉 Selesai! Video animasi Reels 'Stok UMKM Dicatat Manual' (" + actualExt.toUpperCase() + ") telah berhasil diunduh!");
     };
 
     mediaRecorder.start(1000);
