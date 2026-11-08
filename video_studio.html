@@ -338,7 +338,7 @@ for (let i = 1; i <= 6; i++) {
     img.onload = () => { sceneImages[i] = img; };
 }
 
-// Storyboard Data
+// Storyboard Data (Naskah Narasi Gaya Reels: Padat, Jelas & Pas di Kotak)
 const scenes = [
     {
         id: 1,
@@ -346,7 +346,7 @@ const scenes = [
         end: 15,
         title: "MASALAH KLASIK UMKM",
         sub: "Stok Masih Dicatat Manual?",
-        narration: "Pernah nggak, kamu lihat toko UMKM yang masih mencatat stok barang pakai buku tulis tebal dan nota kertas yang gampang hilang? Saat pembeli tanya barang, pemiliknya kebingungan bongkar rak berjam-jam!",
+        narration: "Stok barang UMKM masih dicatat di buku tulis dan nota kertas? Awas, rawan hilang, selisih hitung, dan bikin pusing pemilik toko!",
         accent: '#ef4444'
     },
     {
@@ -355,7 +355,7 @@ const scenes = [
         end: 30,
         title: "DAMPAK FATAL",
         sub: "Pesanan Dibatalkan, Modal Amblas!",
-        narration: "Akibatnya fatal! Terjadi 'overselling'—pesanan online masuk tapi barang di toko fisik sudah laku. Toko kena penalti bintang satu, pembeli kecewa, dan barang di gudang kedaluwarsa tanpa sadar. Modal jutaan rupiah pun amblas sia-sia!",
+        narration: "Akibatnya fatal! Pesanan online masuk tapi stok fisik toko ternyata habis. Kena penalti bintang satu, pembeli kecewa, dan rugi jutaan rupiah!",
         accent: '#f97316'
     },
     {
@@ -364,7 +364,7 @@ const scenes = [
         end: 50,
         title: "SOLUSI DIGITAL UMKM",
         sub: "SmartStock AI & OmniSync UMKM™",
-        narration: "Kini saatnya UMKM naik kelas dengan SmartStock AI! Aplikasi manajemen stok cerdas berbasis AI dan kamera ponsel, menghubungkan toko fisik dan seluruh toko online kamu secara otomatis dalam satu genggaman!",
+        narration: "Solusinya: SmartStock AI! Aplikasi manajemen stok pintar yang otomatis menghubungkan kasir toko fisik dan seluruh online shop kamu dalam satu genggaman.",
         accent: '#10b981'
     },
     {
@@ -373,7 +373,7 @@ const scenes = [
         end: 75,
         title: "DEMO APLIKASI CERDAS",
         sub: "Tiga Langkah Mudah Kelola Stok",
-        narration: "Cara kerjanya super gampang dalam tiga langkah! Pertama: Foto nota atau scan barcode barang pakai kamera ponsel. Kedua: Stok otomatis tersinkronisasi secara real-time ke kasir toko dan marketplace online. Ketiga: Dapatkan pengingat pintar di WhatsApp saat stok barang menipis sebelum kehabisan!",
+        narration: "Tiga langkah mudah: Scan barcode pakai kamera HP, stok otomatis tersinkron ke semua marketplace, dan dapatkan notifikasi WhatsApp saat stok menipis!",
         accent: '#34d399'
     },
     {
@@ -382,7 +382,7 @@ const scenes = [
         end: 100,
         title: "HASIL & MANFAAT NYATA",
         sub: "Hemat Waktu 80%, Nol Pembatalan!",
-        narration: "Hasilnya luar biasa! Pembukuan seratus persen akurat, nol pembatalan pesanan, hemat waktu hingga delapan puluh persen, dan toko kebanjiran ulasan bintang lima. Bisnis berkembang pesat, pemilik toko tidur nyenyak!",
+        narration: "Hasilnya nyata! Hemat waktu pembukuan hingga 80%, nol pembatalan pesanan, dan pelanggan puas repeat order dengan rating bintang lima!",
         accent: '#10b981'
     },
     {
@@ -391,7 +391,7 @@ const scenes = [
         end: 120,
         title: "KESIMPULAN & PENUTUP",
         sub: "UMKM Naik Kelas, Kelola Stok Cepat & Pas!",
-        narration: "Kelola stok gak perlu bikin pusing. Bersama SmartStock AI, UMKM naik kelas, kelola stok cepat dan pas! Saya Moch Ramadhan Sulaeman, terima kasih.",
+        narration: "Kelola stok gak perlu ribet. Bersama SmartStock AI, UMKM naik kelas, kelola stok cepat dan pas! Saya Moch Ramadhan Sulaeman, terima kasih.",
         accent: '#ffd700'
     }
 ];
@@ -1400,33 +1400,46 @@ function drawMotionScene3(p, time) {
 // Scene 4: Live App Demo (Scanner -> OmniSync -> WhatsApp)
 function drawMotionScene4(p, time) {
     let mode = 'scanner';
-    let stepTitle = "Langkah 1: Scan Barcode via Kamera HP ⚡";
+    let stepBadge = "LANGKAH 1";
+    let stepHeader = "Scan Barcode via Kamera HP ⚡";
+    let stepSub = "Foto nota / scan barcode, data stok langsung terbaca otomatis";
+
     if (p >= 0.33 && p < 0.66) {
         mode = 'omnisync';
-        stepTitle = "Langkah 2: Auto-Sync Realtime Kasir & E-Commerce 🔄";
+        stepBadge = "LANGKAH 2";
+        stepHeader = "Live Auto-Sync Kasir & Online 🔄";
+        stepSub = "Stok kasir toko & e-commerce sinkron otomatis detik itu juga";
     } else if (p >= 0.66) {
         mode = 'whatsapp';
-        stepTitle = "Langkah 3: Notifikasi WhatsApp Kulakan Otomatis 💬";
+        stepBadge = "LANGKAH 3";
+        stepHeader = "Notifikasi WhatsApp Kulakan Otomatis 💬";
+        stepSub = "Bot pintar kirim peringatan sebelum barang di rak toko kehabisan";
     }
 
     // Interactive Phone App in Action!
-    drawInteractivePhoneApp(W/2, 660, 1.05, mode, p, time);
+    drawInteractivePhoneApp(W/2, 650, 1.02, mode, p, time);
 
-    // Active Step Pill Indicator
+    // Active Step Pill Indicator (Clean Two-Line Card with Generous Margins - Never Overflows)
     ctx.save();
     ctx.translate(W/2, 1140);
-    ctx.fillStyle = "rgba(6, 78, 59, 0.95)";
+    ctx.fillStyle = "rgba(6, 78, 59, 0.96)";
     ctx.beginPath();
-    ctx.roundRect(-440, -45, 880, 90, 18);
+    ctx.roundRect(-460, -58, 920, 116, 20);
     ctx.fill();
     ctx.strokeStyle = "#34d399";
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 3.5;
     ctx.stroke();
 
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 30px 'Poppins', sans-serif";
+    // Step Header Line (Gold Accent)
+    ctx.fillStyle = "#ffd700";
+    ctx.font = "900 24px 'Montserrat', sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText(stepTitle, 0, 10);
+    ctx.fillText(`● ${stepBadge}: ${stepHeader}`, 0, -14);
+
+    // Subtitle Description (White Poppins)
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "600 20px 'Poppins', sans-serif";
+    ctx.fillText(stepSub, 0, 26);
     ctx.restore();
 }
 
@@ -1561,54 +1574,94 @@ function drawMotionScene6(p, time) {
     ctx.restore();
 }
 
-// INSTAGRAM REELS VIRAL KARAOKE AUTO-CAPTIONS
+// INSTAGRAM REELS VIRAL KARAOKE AUTO-CAPTIONS (SLIDING WINDOW - NEVER OVERFLOWS)
 function drawReelsCaptions(sc, sceneProgress) {
-    const boxY = H - 340;
+    const boxY = H - 330;
     const boxH = 220;
 
-    ctx.fillStyle = "rgba(11, 15, 25, 0.94)";
-    ctx.fillRect(40, boxY, W - 80, boxH);
-    ctx.strokeStyle = "rgba(16, 185, 129, 0.4)";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(40, boxY, W - 80, boxH);
+    // Glassmorphism Card
+    ctx.fillStyle = "rgba(11, 15, 25, 0.95)";
+    ctx.beginPath();
+    ctx.roundRect(40, boxY, W - 80, boxH, 20);
+    ctx.fill();
+    ctx.strokeStyle = "rgba(16, 185, 129, 0.5)";
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
 
+    // Top Header Label
     ctx.fillStyle = "#ffd700";
-    ctx.font = "800 20px 'Montserrat', sans-serif";
+    ctx.font = "800 18px 'Montserrat', sans-serif";
     ctx.textAlign = "left";
-    ctx.fillText("🎙️ VOICE OVER (NARASI RESMI):", 70, boxY + 38);
+    ctx.fillText("🎙️ VOICE OVER (NARASI RESMI REELS):", 70, boxY + 36);
 
     const words = sc.narration.split(' ');
     const activeWordIndex = Math.min(words.length - 1, Math.floor(sceneProgress * words.length * 1.05));
 
-    ctx.font = "700 26px 'Poppins', sans-serif";
-    let curX = 70;
-    let curY = boxY + 82;
-    const maxLineW = W - 140;
-    const lineH = 36;
+    // Measure and wrap words into lines safely
+    const maxLineW = W - 140; // 940px
+    ctx.font = "700 28px 'Poppins', sans-serif";
+    const lines = [];
+    let currentLine = [];
+    let currentLineW = 0;
 
     for (let i = 0; i < words.length; i++) {
-        const w = words[i] + ' ';
-        const wordWidth = ctx.measureText(w).width;
-
-        if (curX + wordWidth > 70 + maxLineW) {
-            curX = 70;
-            curY += lineH;
+        const wStr = words[i] + ' ';
+        const wW = ctx.measureText(wStr).width;
+        if (currentLineW + wW > maxLineW && currentLine.length > 0) {
+            lines.push(currentLine);
+            currentLine = [];
+            currentLineW = 0;
         }
+        currentLine.push({ word: words[i], index: i, width: wW });
+        currentLineW += wW;
+    }
+    if (currentLine.length > 0) lines.push(currentLine);
 
-        if (i === activeWordIndex) {
-            ctx.fillStyle = "#fef08a";
-            ctx.font = "900 28px 'Montserrat', sans-serif";
-            ctx.fillText(w, curX, curY);
-            ctx.font = "700 26px 'Poppins', sans-serif";
-        } else if (i < activeWordIndex) {
-            ctx.fillStyle = "#ffffff";
-            ctx.fillText(w, curX, curY);
-        } else {
-            ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
-            ctx.fillText(w, curX, curY);
+    // Identify active line index
+    let activeLineIdx = 0;
+    for (let l = 0; l < lines.length; l++) {
+        if (lines[l].some(item => item.index === activeWordIndex)) {
+            activeLineIdx = l;
+            break;
         }
+    }
 
-        curX += wordWidth;
+    // Show at most 3 visible lines (sliding window centered on active speech)
+    let startLine = Math.max(0, activeLineIdx - 1);
+    if (startLine + 3 > lines.length) {
+        startLine = Math.max(0, lines.length - 3);
+    }
+    const visibleLines = lines.slice(startLine, startLine + 3);
+
+    const startY = boxY + 84;
+    const lineH = 42;
+
+    for (let row = 0; row < visibleLines.length; row++) {
+        const lineItems = visibleLines[row];
+        const lineY = startY + row * lineH;
+        let curX = 70;
+
+        for (let item of lineItems) {
+            if (item.index === activeWordIndex) {
+                // Active word highlight: Gold with subtle glow
+                ctx.fillStyle = "#ffd700";
+                ctx.font = "900 30px 'Montserrat', sans-serif";
+                ctx.shadowColor = "rgba(255, 215, 0, 0.7)";
+                ctx.shadowBlur = 10;
+                ctx.fillText(item.word + ' ', curX, lineY);
+                ctx.shadowBlur = 0;
+                ctx.font = "700 28px 'Poppins', sans-serif";
+            } else if (item.index < activeWordIndex) {
+                // Spoken words: Crisp bright white
+                ctx.fillStyle = "#ffffff";
+                ctx.fillText(item.word + ' ', curX, lineY);
+            } else {
+                // Upcoming words: Semi-transparent
+                ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
+                ctx.fillText(item.word + ' ', curX, lineY);
+            }
+            curX += item.width;
+        }
     }
 }
 
