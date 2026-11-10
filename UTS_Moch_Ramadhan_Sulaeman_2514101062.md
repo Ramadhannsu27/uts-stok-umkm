@@ -1,5 +1,5 @@
 # LAPORAN UJIAN TENGAH SEMESTER (UTS)
-## MATA KULIAH: SISTEM TEKNOLOGI
+## MATA KULIAH: TEKNOLOGI DIGITAL
 **Topik:** Analisis Masalah, Perancangan Solusi Digital, dan Storyboard Video Animasi Explainer  
 **Nama Mahasiswa:** Moch Ramadhan Sulaeman  
 **NPM:** 2514101062  
@@ -210,4 +210,4 @@ flowchart TD
 3. **Lisensi Aset:** Seluruh elemen visual berlisensi Canva Content License dan audio bebas royalti dari CapCut Audio Library.
 
 ---
-*(Dokumen tugas UTS resmi mata kuliah Sistem Teknologi oleh Moch Ramadhan Sulaeman - NPM: 2514101062).*
+*(Dokumen tugas UTS resmi mata kuliah Teknologi Digital oleh Moch Ramadhan Sulaeman - NPM: 2514101062).*
