@@ -105,27 +105,16 @@ Alur kerja SmartStock AI menghubungkan proses pengadaan barang (*inbound*), penj
 
 ```mermaid
 flowchart TD
-    Start([Mulai Operasional]) --> Step1[Barang Datang dari Supplier / Kulakan]
-    Step1 --> Step2[Pemilik Foto Faktur / Scan Barcode via Kamera HP]
-    Step2 --> Step3[AI OCR Otomatis Menginput Data ke Database Cloud]
-    
-    Step3 --> Step4[OmniSync Update Stok ke Toko Fisik & Semua Marketplace]
-    
-    Step4 --> DecisionChannel{Kanal Transaksi Terjadi?}
-    DecisionChannel -- Transaksi Toko Fisik --> POSAction[Kasir Scan Barang di Toko]
-    DecisionChannel -- Transaksi E-Commerce --> WebAction[Pembeli Checkout di Shopee/TikTok]
-    
-    POSAction --> AutoDeduct[Sistem Potong Stok Pusat]
-    WebAction --> AutoDeduct
-    
-    AutoDeduct --> SyncBroadcast[OmniSync Update Angka Sisa Stok ke Semua Kanal Realtime]
-    
-    SyncBroadcast --> DecisionSafety{Apakah Stok < Batas Minimum Restock?}
-    DecisionSafety -- Ya --> AlertRestock[AI Kirim Notifikasi Kulakan Cerdas ke WhatsApp Pemilik]
-    AlertRestock --> Step1
-    
-    DecisionSafety -- Tidak --> StepEnd([Stok Terkendali & Laporan Laba Rugi Otomatis])
+    A([Mulai]) --> B[/Masukan data barang & scan barcode via HP/]
+    B --> C[Simpan ke Cloud Database AI, auto-sync & potong stok kasir toko dan e-commerce]
+    C --> D{? sisa stok < batas aman}
+    D -- Ya --> E[/Kirim alert kulakan via WA/]
+    D -- Tidak --> F[/Stok aman & laporan rapi/]
+    E --> G([Selesai])
+    F --> G
 ```
+
+![Flowchart Sistem SmartStock AI](flowchart_xmind.png)
 
 #### Rincian Langkah Kerja Sistem:
 1. **Input Kilat (*Effortless Inbound*):** Pemilik toko mengarahkan kamera ponsel ke nota kulakan atau kardus barang. AI membaca dan mencatat ratusan stok dalam hitungan detik.
