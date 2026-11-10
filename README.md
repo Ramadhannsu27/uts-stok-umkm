@@ -1,11 +1,11 @@
-# UTS Sistem Informasi & Bisnis Digital
+# UTS Sistem Teknologi
 ## SmartStock AI & OmniSync UMKM™: Solusi Mengatasi Stok UMKM yang Dicatat Manual
 
 ### 🎓 Identitas Mahasiswa
 - **Nama:** Moch Ramadhan Sulaeman
 - **NPM:** 2514101062
-- **Program Studi:** Sistem Informasi / Bisnis Digital
-- **Mata Kuliah:** Sistem Informasi & Bisnis Digital (Ujian Tengah Semester)
+- **Program Studi:** Sistem Teknologi
+- **Mata Kuliah:** Sistem Teknologi (Ujian Tengah Semester)
 
 ---
 
