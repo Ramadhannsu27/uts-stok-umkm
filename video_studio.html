@@ -1355,7 +1355,7 @@ function drawFcShape(type, cx, cy, w, h, lines, t, c1, c2, border, icon, time) {
     lines.forEach((ln, i) => ctx.fillText(ln, 0, y0 + i * lh));
     ctx.shadowBlur = 0;
     // icon badge
-    if (icon) {
+    if (false && icon) {
         const bx = -w/2 + 6, by = -h/2 + 4;
         ctx.fillStyle = "#0b1220"; ctx.strokeStyle = border; ctx.lineWidth = 3;
         ctx.beginPath(); ctx.arc(bx, by, 24, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
