@@ -191,30 +191,21 @@ Pencatatan inventaris dan stok barang pada Usaha Mikro, Kecil, dan Menengah (UMK
     </p>
 </div>
 <div class="code-box">
-[Barang Datang dari Supplier]
-      │
-      ▼
-Pemilik Foto Nota / Scan Barcode via Kamera HP
-      │
-      ▼
-AI OCR Otomatis Input Data ke Database Cloud
-      │
-      ▼
-OmniSync Update Stok ke Toko Fisik & Semua Marketplace
-      │
-   [Kanal Transaksi Terjadi]
-      ├─► (Toko Fisik) ──► Kasir Scan Barang di Toko  ──┐
-      └─► (E-Commerce)  ──► Pembeli Beli di Shopee/TikTok ─┴─► [Sistem Potong Stok Pusat]
-                                                                        │
-                                                                        ▼
-                                                   OmniSync Update Sisa Stok ke Semua Kanal (Realtime)
-                                                                        │
-                                                   [Apakah Stok < Batas Kulakan?]
-                                                              │              │
-                                                          (Ya)│              └──► (Tidak) ──► Stok Aman & Laporan Rapi
-                                                              ▼
-                                                   AI Kirim Notifikasi Kulakan Otomatis ke WhatsApp Pemilik
-</div>
+(Mulai)
+   |
+   v
+/ Masukan data barang & scan barcode via HP /
+   |
+   v
+[ Simpan ke Cloud Database AI, auto-sync & potong stok kasir toko dan e-commerce ]
+   |
+   v
+< ? sisa stok < batas aman >
+   |-- Ya ----> / Kirim alert kulakan via WA / ---------.
+   |                                                    |
+   '-- Tidak -> / Stok aman & laporan rapi / ----------+
+                                                        v
+                                                    (Selesai)</div>
 
 <h3>6. Perbandingan Kondisi Sebelum dan Sesudah Penerapan Solusi</h3>
 <table>
