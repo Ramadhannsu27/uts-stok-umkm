@@ -345,9 +345,9 @@ const scenes = [
         id: 0,
         start: 0,
         end: 18,
-        title: "DIAGRAM ALIR SISTEM (XMIND)",
-        sub: "Arsitektur Bisnis SmartStock AI & OmniSync",
-        narration: "Sebelum masuk ke animasi, ini diagram alir sistem SmartStock AI berbasis XMind: dari barang supplier masuk, scan barcode AI, sinkronisasi otomatis ke kasir dan e-commerce, hingga pengingat kulakan otomatis via WhatsApp!",
+        title: "FLOWCHART SISTEM",
+        sub: "Alur Kerja SmartStock AI & OmniSync",
+        narration: "Sebelum masuk ke animasi, ini flowchart sistem SmartStock AI: mulai dari input data dan scan barcode, simpan ke cloud dengan sinkronisasi otomatis, lalu cek batas stok. Kalau menipis, kirim peringatan kulakan via WhatsApp!",
         accent: '#38bdf8'
     },
     {
@@ -1293,130 +1293,72 @@ function drawXMindBranch(x1, y1, x2, y2, color, time, active) {
     ctx.restore();
 }
 
-// Scene 0: Flowchart Sistem Berbasis XMind (Sebelum Masuk ke Animasi Cerita)
-function drawMotionSceneFlowchart(p, time) {
-    // 1. XMind Blueprint Dot Matrix Background
-    ctx.fillStyle = "#070c18";
-    ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = "rgba(56, 189, 248, 0.12)";
-    for (let gx = 30; gx < W; gx += 45) {
-        for (let gy = 230; gy < 1550; gy += 45) {
-            ctx.beginPath();
-            ctx.arc(gx, gy, 1.5, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    // 2. Header Banner: FLOWCHART PROSES BISNIS (XMIND)
-    const hT = Math.min(1, p / 0.08);
-    ctx.save();
-    ctx.translate(W/2, 265);
-    ctx.scale(easeOutBack(hT), easeOutBack(hT));
-    ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
-    ctx.beginPath();
-    ctx.roundRect(-420, -34, 840, 68, 16);
-    ctx.fill();
-    ctx.strokeStyle = "#38bdf8";
-    ctx.lineWidth = 2.5;
-    ctx.stroke();
-
-    ctx.fillStyle = "#ffd700";
-    ctx.font = "900 16px 'Montserrat', sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText("📋 DIAGRAM ALIR SISTEM (XMIND FLOWCHART)", 0, -4);
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 18px 'Poppins', sans-serif";
-    ctx.fillText("Arsitektur SmartStock AI & OmniSync UMKM™", 0, 19);
-    ctx.restore();
-
-    // Step Timing Expansion
-    const t1 = Math.min(1, Math.max(0, (p - 0.04) / 0.12));
-    const t2 = Math.min(1, Math.max(0, (p - 0.16) / 0.12));
-    const t3 = Math.min(1, Math.max(0, (p - 0.28) / 0.12));
-    const t4 = Math.min(1, Math.max(0, (p - 0.42) / 0.12));
-    const t5 = Math.min(1, Math.max(0, (p - 0.60) / 0.12));
-    const t6 = Math.min(1, Math.max(0, (p - 0.78) / 0.12));
-
-    // Connectors (drawn behind nodes)
-    if (t2 > 0) drawXMindBranch(W/2, 395, W/2, 485, "#38bdf8", time, true);
-    if (t3 > 0) drawXMindBranch(W/2, 555, W/2, 645, "#60a5fa", time, true);
-    if (t4 > 0) {
-        // Fork from Core to 4A (Offline) and 4B (Online)
-        drawXMindBranch(W/2, 725, 310, 805, "#34d399", time, true);
-        drawXMindBranch(W/2, 725, 770, 805, "#34d399", time, true);
-        // Merge from 4A and 4B to Sync Badge
-        drawXMindBranch(310, 875, W/2, 970, "#f59e0b", time, true);
-        drawXMindBranch(770, 875, W/2, 970, "#ec4899", time, true);
-    }
-    if (t5 > 0) {
-        drawXMindBranch(W/2, 1030, W/2, 1115, "#10b981", time, true);
-        drawXMindBranch(W/2, 1195, 320, 1275, "#ef4444", time, true);
-        drawXMindBranch(W/2, 1195, 760, 1275, "#10b981", time, true);
-    }
-    if (t6 > 0) {
-        drawXMindBranch(320, 1345, W/2, 1430, "#a855f7", time, true);
-        drawXMindBranch(760, 1345, W/2, 1430, "#a855f7", time, true);
-    }
-
-    // Node 1: Input Barang Supplier
-    if (t1 > 0) {
-        drawXMindNode(W/2, 360, 700, 70, "📦", "1. BARANG DARI SUPPLIER TIBA", "Faktur pembelian & stok fisik produk baru masuk", "#0891b2", "#0e7490", "#22d3ee", t1);
-    }
-
-    // Node 2: Scan Barcode / OCR Nota via Kamera HP
-    if (t2 > 0) {
-        drawXMindNode(W/2, 520, 700, 70, "⚡", "2. SCAN KAMERA HP (AI OCR)", "Otomatis membaca nama SKU, jumlah & harga modal", "#2563eb", "#1d4ed8", "#60a5fa", t2);
-    }
-
-    // Node 3: Cloud Database & OmniSync Core
-    if (t3 > 0) {
-        drawXMindNode(W/2, 685, 740, 80, "☁️", "3. CLOUD DATABASE & OMNISYNC", "Pusat inventaris terenkripsi sinkronisasi real-time", "#059669", "#047857", "#34d399", t3);
-    }
-
-    // Nodes 4A & 4B: Kanal Kasir Offline & Online Marketplace
-    if (t4 > 0) {
-        drawXMindNode(310, 840, 420, 70, "🏪", "KASIR TOKO (POS)", "Penjualan offline toko", "#d97706", "#b45309", "#fbbf24", t4);
-        drawXMindNode(770, 840, 420, 70, "🛒", "E-COMMERCE", "Shopee, TikTok Shop, Tokped", "#db2777", "#be185d", "#f472b6", t4);
-
-        // Merge Sync Badge
-        ctx.save();
-        ctx.translate(W/2, 1000);
-        ctx.scale(easeOutBack(t4), easeOutBack(t4));
-        ctx.fillStyle = "rgba(6, 78, 59, 0.96)";
-        ctx.beginPath();
-        ctx.roundRect(-310, -30, 620, 60, 30);
-        ctx.fill();
-        ctx.strokeStyle = "#34d399";
-        ctx.lineWidth = 3;
-        ctx.stroke();
-
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 18px 'Poppins', sans-serif";
-        ctx.textAlign = "center";
-        ctx.fillText("🔄 AUTO-SYNC: POTONG STOK SERENTAK", 0, -3);
-        ctx.fillStyle = "#fef08a";
-        ctx.font = "900 13px 'Montserrat', sans-serif";
-        ctx.fillText("NOL OVERSELLING & DATA 100% COCOK", 0, 16);
-        ctx.restore();
-    }
-
-    // Node 5: Decision (Cek Batas Minimum Stok)
-    if (t5 > 0) {
-        drawXMindNode(W/2, 1155, 720, 76, "❓", "4. CEK BATAS MINIMUM STOK (AI)", "Apakah sisa stok di rak < batas aman kulakan?", "#ca8a04", "#a16207", "#fde047", t5);
-
-        // Branch 5A (Jika YA: WhatsApp Bot)
-        drawXMindNode(320, 1310, 420, 70, "💬", "[YA] BOT WHATSAPP", "Peringatan kulakan otomatis ke pemilik", "#dc2626", "#b91c1c", "#f87171", t5);
-
-        // Branch 5B (Jika TIDAK: Stok Aman)
-        drawXMindNode(760, 1310, 420, 70, "✅", "[TIDAK] STOK AMAN", "Laporan rapi & inventaris terkontrol", "#16a34a", "#15803d", "#86efac", t5);
-    }
-
-    // Node 6: Output & Manfaat Sukses
-    if (t6 > 0) {
-        drawXMindNode(W/2, 1465, 740, 70, "🎯", "5. HASIL: 100% OPERASIONAL EFISIEN", "Hemat waktu 80% • Nol pembatalan • Bisnis naik kelas!", "#7c3aed", "#6d28d9", "#c084fc", t6);
+// Scene 0: Flowchart Sistem (Notasi Standar: Terminator, Input/Output, Proses, Decision)
+function drawFcArrow(x1, y1, x2, y2, prog) {
+    if (prog <= 0) return;
+    const ex = x1 + (x2 - x1) * prog, ey = y1 + (y2 - y1) * prog;
+    ctx.strokeStyle = "#111827"; ctx.fillStyle = "#111827"; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(ex, ey); ctx.stroke();
+    if (prog >= 1) {
+        const a = Math.atan2(y2 - y1, x2 - x1);
+        ctx.beginPath(); ctx.moveTo(x2, y2);
+        ctx.lineTo(x2 - 16 * Math.cos(a - 0.4), y2 - 16 * Math.sin(a - 0.4));
+        ctx.lineTo(x2 - 16 * Math.cos(a + 0.4), y2 - 16 * Math.sin(a + 0.4));
+        ctx.closePath(); ctx.fill();
     }
 }
-
+function drawFcShape(type, cx, cy, w, h, lines, t) {
+    if (t <= 0) return;
+    ctx.save();
+    ctx.translate(cx, cy);
+    const s = easeOutBack(Math.min(1, t));
+    ctx.scale(s, s);
+    ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#111827"; ctx.lineWidth = 4.5; ctx.lineJoin = "round";
+    ctx.beginPath();
+    if (type === 'term') ctx.roundRect(-w/2, -h/2, w, h, h/2);
+    else if (type === 'proc') ctx.roundRect(-w/2, -h/2, w, h, 18);
+    else if (type === 'io') { const k = 36; ctx.moveTo(-w/2 + k, -h/2); ctx.lineTo(w/2 + k, -h/2); ctx.lineTo(w/2 - k, h/2); ctx.lineTo(-w/2 - k, h/2); ctx.closePath(); }
+    else if (type === 'dec') { ctx.moveTo(0, -h/2); ctx.lineTo(w/2, 0); ctx.lineTo(0, h/2); ctx.lineTo(-w/2, 0); ctx.closePath(); }
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#111827"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.font = "600 25px 'Poppins', sans-serif";
+    const lh = 32, y0 = -((lines.length - 1) * lh) / 2;
+    lines.forEach((ln, i) => ctx.fillText(ln, 0, y0 + i * lh));
+    ctx.textBaseline = "alphabetic";
+    ctx.restore();
+}
+function drawMotionSceneFlowchart(p, time) {
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, W, H);
+    const t = (a, b) => Math.min(1, Math.max(0, (p - a) / (b - a)));
+    const X = 380;
+    // Nodes: Mulai y=330, Input y=500, Proses y=690, Decision y=900, Ya (right) y=900, Tidak y=1110, Selesai y=1230
+    // Arrows
+    drawFcArrow(X, 372, X, 442, t(0.10, 0.16));
+    drawFcArrow(X, 562, X, 612, t(0.24, 0.30));
+    drawFcArrow(X, 768, X, 790, t(0.40, 0.44));
+    drawFcArrow(X + 190, 900, 660, 900, t(0.58, 0.64));
+    drawFcArrow(X, 1010, X, 1050, t(0.72, 0.78));
+    drawFcArrow(X, 1170, X, 1198, t(0.88, 0.92));
+    // loop from Ya to bottom
+    const tl = t(0.84, 0.94);
+    if (tl > 0) {
+        ctx.strokeStyle = "#111827"; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.moveTo(960, 900); ctx.lineTo(1030, 900); ctx.lineTo(1030, 1140); ctx.lineTo(X + 8, 1140); ctx.stroke();
+    }
+    drawFcShape('term', X, 330, 260, 84, ["Mulai"], t(0.02, 0.10));
+    drawFcShape('io', X, 502, 440, 118, ["Masukan data barang &", "scan barcode via HP"], t(0.16, 0.24));
+    drawFcShape('proc', X, 700, 430, 170, ["Simpan ke Cloud AI,", "auto-sync & potong stok", "kasir toko dan e-commerce"], t(0.30, 0.40));
+    drawFcShape('dec', X, 900, 380, 220, ["? sisa stok <", "batas aman"], t(0.46, 0.56));
+    drawFcShape('io', 810, 900, 230, 110, ["Kirim alert", "kulakan via WA"], t(0.64, 0.72));
+    drawFcShape('io', X, 1105, 300, 100, ["Stok aman &", "laporan rapi"], t(0.78, 0.86));
+    drawFcShape('term', X, 1240, 260, 84, ["Selesai"], t(0.92, 1.0));
+    ctx.fillStyle = "#111827"; ctx.font = "600 24px 'Poppins', sans-serif"; ctx.textAlign = "center";
+    if (p > 0.64) ctx.fillText("Ya", 625, 872);
+    if (p > 0.78) ctx.fillText("Tidak", 425, 1030);
+    ctx.fillStyle = "#475569"; ctx.font = "600 22px 'Poppins', sans-serif";
+    ctx.fillText("Flowchart Sistem SmartStock AI & OmniSync UMKM", W/2, 1320);
+}
 // Scene 1: Problem (Animated Motion Graphics on Image - NO CARTOON OVERLAY)
 function drawMotionScene1(p, time) {
     // 1. Radial Action Speed Lines on Shock Hook (p = 0.08 to 0.35)
@@ -1791,7 +1733,7 @@ function drawMotionScene6(p, time) {
     
     ctx.fillStyle = "#a7f3d0";
     ctx.font = "26px 'Poppins', sans-serif";
-    ctx.fillText("Sistem Informasi & Bisnis Digital", 0, 235);
+    ctx.fillText("Sistem Teknologi", 0, 235);
     ctx.restore();
 }
 
