@@ -1,4 +1,4 @@
-# UTS Teknologi Digital
+﻿# UTS Teknologi Digital
 ## SmartStock AI & OmniSync UMKM™: Solusi Mengatasi Stok UMKM yang Dicatat Manual
 
 ### 🎓 Identitas Mahasiswa
@@ -12,13 +12,13 @@
 
 ### 🌐 Tautan Live GitHub Pages (Bisa Dibuka Langsung dari HP / Laptop)
 - 🎬 **Studio Video Animasi (9:16) Reels:**  
-  [https://ramadhannsu27.github.io/uts-stok-umkm/video_studio.html?v=20261110_final](https://ramadhannsu27.github.io/uts-stok-umkm/video_studio.html?v=20261110_final)
+  [https://ramadhannsu27.github.io/uts-stok-umkm/video_studio.html?v=20261110_v3](https://ramadhannsu27.github.io/uts-stok-umkm/video_studio.html?v=20261110_v3)
 - 📊 **Dashboard Utama:**  
-  [https://ramadhannsu27.github.io/uts-stok-umkm/?v=20261110_final](https://ramadhannsu27.github.io/uts-stok-umkm/?v=20261110_final)
+  [https://ramadhannsu27.github.io/uts-stok-umkm/?v=20261110_v3](https://ramadhannsu27.github.io/uts-stok-umkm/?v=20261110_v3)
 - 📄 **Dokumen Laporan UTS Lengkap:**  
-  [https://ramadhannsu27.github.io/uts-stok-umkm/UTS_Moch_Ramadhan_Sulaeman_2514101062.html?v=20261110_final](https://ramadhannsu27.github.io/uts-stok-umkm/UTS_Moch_Ramadhan_Sulaeman_2514101062.html?v=20261110_final)
+  [https://ramadhannsu27.github.io/uts-stok-umkm/UTS_Moch_Ramadhan_Sulaeman_2514101062.html?v=20261110_v3](https://ramadhannsu27.github.io/uts-stok-umkm/UTS_Moch_Ramadhan_Sulaeman_2514101062.html?v=20261110_v3)
 - 🖼️ **Gambar Flowchart Sistem Langsung:**  
-  [https://ramadhannsu27.github.io/uts-stok-umkm/flowchart_xmind.png?v=20261110_final](https://ramadhannsu27.github.io/uts-stok-umkm/flowchart_xmind.png?v=20261110_final)
+  [https://ramadhannsu27.github.io/uts-stok-umkm/flowchart_xmind.png?v=20261110_v3](https://ramadhannsu27.github.io/uts-stok-umkm/flowchart_xmind.png?v=20261110_v3)
 
 ---
 
