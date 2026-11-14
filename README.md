@@ -1,60 +1,53 @@
-﻿# UTS Teknologi Digital
+﻿# 🎓 UTS Teknologi Digital — Moch Ramadhan Sulaeman (2514101062)
 ## SmartStock AI & OmniSync UMKM™: Solusi Mengatasi Stok UMKM yang Dicatat Manual
 
-### 🎓 Identitas Mahasiswa
-- **Nama:** Moch Ramadhan Sulaeman
-- **NPM:** 2514101062
-- **Mata Kuliah:** Teknologi Digital (Ujian Tengah Semester)
-- **Topik Kasus:** Stok UMKM Masih Dicatat Manual
-- **Solusi Digital:** SmartStock AI & OmniSync UMKM™
+Folder ini telah ditata ulang secara rapi untuk dikumpulkan ke dalam **tautan Folder Google Drive Kelas** sesuai dengan **5 syarat wajib pengumpulan UTS**:
+
+### 📦 Daftar 5 Berkas Utama (Urut Nomor `01` s/d `05`)
+
+1. **`01_Video_MP4_UTS_Moch_Ramadhan_Sulaeman_2514101062.mp4`**  
+   *(Syarat 1: Video MP4 yang di-tag ke Instagram Pribadi Mahasiswa)*  
+   Video animasi explainer format vertikal **9:16 (1080×1920 px)** berdurasi **120 detik (2 menit)**, memuat 6 adegan animasi, visualisasi flowchart, subtitle karaoke tersinkronisasi, musik latar (BGM), dan efek suara (SFX).
+
+2. **`02_Storyboard_6_Adegan_Moch_Ramadhan_Sulaeman_2514101062.pdf`**  
+   *(Syarat 2: Storyboard minimal enam adegan dalam PDF)*  
+   Dokumen **PDF (2 Halaman A4)** berisi storyboard lengkap Adegan 1 s/d Adegan 6 beserta gambar ilustrasi asli tiap adegan, durasi waktu, deskripsi visual, aksi animasi keyframe, naskah narasi Voice Over (VO), teks di layar, serta SFX & BGM.
+
+3. **`03_Flowchart_Sistem_Moch_Ramadhan_Sulaeman_2514101062.pdf`**, **`.png`**, & **`03_Flowchart_Sistem_Drawio.drawio`**  
+   *(Syarat 3: Flowchart dalam PDF/PNG atau tautan Draw.io)*  
+   Tersedia lengkap dalam **3 format**:
+   - **PDF** (`03_Flowchart_Sistem_Moch_Ramadhan_Sulaeman_2514101062.pdf`) lengkap dengan keterangan simbol standar ISO/ANSI & penjelasan tahapan alur.
+   - **PNG Resolusi Tinggi** (`03_Flowchart_Sistem_Moch_Ramadhan_Sulaeman_2514101062.png`, ukuran 1080×1920 px).
+   - **Berkas Asli Draw.io** (`03_Flowchart_Sistem_Drawio.drawio`, dapat dibuka dan disunting langsung di [https://app.diagrams.net/](https://app.diagrams.net/)).
+
+4. **`04_Analisis_Masalah_dan_Solusi_Moch_Ramadhan_Sulaeman_2514101062.pdf`**  
+   *(Syarat 4: Analisis masalah dan solusi maksimal dua halaman)*  
+   Dokumen laporan akademik dalam format **PDF Tepat 2 Halaman A4** (memenuhi batas maksimal 2 halaman) yang mencakup: (1) Permasalahan spesifik & pihak terdampak, (2) Proses konvensional & akar penyebab, (3) Dampak masalah, (4) Solusi SmartStock AI dengan 3 fitur utama, (5) Ringkasan alur kerja sistem, (6) Tabel perbandingan sebelum vs sesudah, dan (7) Manfaat, keterbatasan, risiko, serta mitigasi keamanan.
+
+5. **`05_Daftar_Alat_dan_Sumber_Aset_Moch_Ramadhan_Sulaeman_2514101062.pdf`**  
+   *(Syarat 5: Daftar alat dan sumber aset)*  
+   Dokumen **PDF (1 Halaman A4)** yang merinci seluruh perangkat lunak produksi, pemanfaatan teknologi kecerdasan buatan (AI), rincian sumber aset visual/audio/tipografi beserta lisensi bebas royalti, dan checklist publikasi Instagram.
 
 ---
 
-### 🌐 Tautan Live GitHub Pages (Bisa Dibuka Langsung dari HP / Laptop)
-- 🎬 **Studio Video Animasi (9:16) Reels:**  
-  [https://ramadhannsu27.github.io/uts-stok-umkm/video_studio.html?v=20261110_v3](https://ramadhannsu27.github.io/uts-stok-umkm/video_studio.html?v=20261110_v3)
-- 📊 **Dashboard Utama:**  
-  [https://ramadhannsu27.github.io/uts-stok-umkm/?v=20261110_v3](https://ramadhannsu27.github.io/uts-stok-umkm/?v=20261110_v3)
-- 📄 **Dokumen Laporan UTS Lengkap:**  
-  [https://ramadhannsu27.github.io/uts-stok-umkm/UTS_Moch_Ramadhan_Sulaeman_2514101062.html?v=20261110_v3](https://ramadhannsu27.github.io/uts-stok-umkm/UTS_Moch_Ramadhan_Sulaeman_2514101062.html?v=20261110_v3)
-- 🖼️ **Gambar Flowchart Sistem Langsung:**  
-  [https://ramadhannsu27.github.io/uts-stok-umkm/flowchart_xmind.png?v=20261110_v3](https://ramadhannsu27.github.io/uts-stok-umkm/flowchart_xmind.png?v=20261110_v3)
+### 📁 Struktur Folder yang Telah Dirapikan
 
----
-
-### 📊 Diagram Flowchart Sistem (Notasi Standar + Blueprint Neon)
-Format 9:16 vertikal (Mulai &rarr; Input Scan &rarr; Proses Cloud Auto-Sync &rarr; Cek Batas Stok &rarr; Alert WA / Stok Aman &rarr; Selesai):
-
-<p align="center">
-  <img src="flowchart_xmind.png" alt="Flowchart Sistem SmartStock AI" width="380">
-</p>
-
----
-
-### 🎨 Visual Outro Scene 6 (Pak Joko & Rekan UMKM Naik Kelas)
-<p align="center">
-  <img src="scene6.jpg" alt="Scene 6 Outro UMKM" width="380">
-</p>
-
----
-
-### 📂 Struktur Berkas Repositori
-1. **`index.html`** - Dashboard web interaktif yang merangkum seluruh paket tugas UTS, tautan studio video, dan galeri aset adegan.
-2. **`video_studio.html`** - Studio pemutar dan perekam video animasi explainer format vertikal 9:16 (Instagram Reels / TikTok) lengkap dengan transisi dinamis, efek kamera 2.5D, teks karaoke tersinkronisasi, dan perekam audio mikrofon/AI.
-3. **`flowchart_xmind.png`** - Diagram alir arsitektur sistem resolusi tinggi 1080x1920 (gaya blueprint neon, panah rapi & panjang tanpa ikon bulat di shape).
-4. **`UTS_Moch_Ramadhan_Sulaeman_2514101062.html`** & **`.md`** - Dokumen laporan akademik lengkap menjawab 7 pertanyaan UTS, analisis akar masalah, 3 fitur SmartStock AI, flowchart sistem, tabel komparasi sebelum-sesudah, serta naskah storyboard 6 adegan (120 detik).
-5. **`scene1.jpg` – `scene6.jpg`** - Aset visual ilustrasi gaya 2D Flat Vector kualitas tinggi berformat 9:16:
-   - *Scene 1:* Masalah Stok Manual (Pak Joko stres di meja kasir)
-   - *Scene 2:* Dampak Fatal Pembatalan Pesanan (*Overselling* & Bintang 1)
-   - *Scene 3:* Solusi SmartStock AI di Smartphone
-   - *Scene 4:* Alur Kerja 3-Langkah (Barcode Scan, Cloud Sync, WA Bot)
-   - *Scene 5:* Manfaat & Hasil Sukses (+80% Hemat Waktu & Omzet Naik)
-   - *Scene 6:* Outro, Slogan, dan Identitas Mahasiswa (Pak Joko & Rekan UMKM)
-6. **`UTS_Stok_UMKM_GitHub.zip`** - Paket arsip lengkap berisi seluruh file tugas UTS siap unduh.
-
----
-
-### 🚀 Cara Menjalankan Proyek
-1. Buka file **`index.html`** di browser (Google Chrome / Edge / Safari).
-2. Klik tombol **"Buka Studio & Rekam Video"** untuk memutar animasi video 9:16.
-3. Website ini sudah aktif live di GitHub Pages!
+```text
+UTS_Moch_Ramadhan_Sulaeman/
+├── 00_PANDUAN_PENGUMPULAN_GDRIVE_&_INSTAGRAM.md                  <-- Panduan link GDrive & Caption IG siap copy
+├── 01_Video_MP4_UTS_Moch_Ramadhan_Sulaeman_2514101062.mp4        <-- (1) Video MP4 9:16 (120 Detik)
+├── 02_Storyboard_6_Adegan_Moch_Ramadhan_Sulaeman_2514101062.pdf  <-- (2) Storyboard 6 Adegan (PDF)
+├── 03_Flowchart_Sistem_Moch_Ramadhan_Sulaeman_2514101062.pdf     <-- (3a) Flowchart Sistem (PDF)
+├── 03_Flowchart_Sistem_Moch_Ramadhan_Sulaeman_2514101062.png     <-- (3b) Flowchart Sistem (PNG)
+├── 03_Flowchart_Sistem_Drawio.drawio                             <-- (3c) File Editable Draw.io
+├── 04_Analisis_Masalah_dan_Solusi_Moch_Ramadhan_Sulaeman_2514101062.pdf <-- (4) Analisis Maks 2 Halaman (PDF)
+├── 05_Daftar_Alat_dan_Sumber_Aset_Moch_Ramadhan_Sulaeman_2514101062.pdf <-- (5) Daftar Alat & Aset (PDF)
+├── index.html                                                    <-- Dashboard Web Pembuka 5 Berkas
+├── README.md                                                     <-- Dokumentasi Ringkas Folder
+└── Aset_&_Sumber_Dokumen/                                        <-- Subfolder Aset Gambar & Studio Web
+    ├── scene1.jpg s/d scene6.jpg                                 <-- Ilustrasi Asli 6 Adegan (9:16)
+    ├── flowchart_xmind.png                                       <-- Salinan Gambar Flowchart
+    ├── video_studio.html                                         <-- Aplikasi Studio Perekam Video Web
+    ├── UTS_Moch_Ramadhan_Sulaeman_2514101062.html                <-- Dokumen Sumber HTML Lengkap
+    └── UTS_Moch_Ramadhan_Sulaeman_2514101062.md                  <-- Dokumen Sumber Markdown Lengkap
+```
