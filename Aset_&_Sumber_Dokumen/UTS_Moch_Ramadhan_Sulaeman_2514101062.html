@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan UTS - Moch Ramadhan Sulaeman (2514101062) - Stok UMKM Dicatat Manual</title>
+<style>
+    body {
+        font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+        line-height: 1.6;
+        color: #222;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    h1 {
+        color: #0b3c5d;
+        border-bottom: 3px solid #0b3c5d;
+        padding-bottom: 8px;
+        text-align: center;
+        font-size: 26px;
+    }
+    h2 {
+        color: #1d2731;
+        background-color: #f0f4f8;
+        padding: 8px 12px;
+        border-left: 5px solid #10b981;
+        margin-top: 35px;
+        font-size: 18px;
+    }
+    h3 {
+        color: #059669;
+        margin-top: 25px;
+        font-size: 16px;
+    }
+    .meta-box {
+        background-color: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-radius: 8px;
+        padding: 15px 20px;
+        margin-bottom: 30px;
+    }
+    .meta-box table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .meta-box td {
+        padding: 6px 10px;
+        border: none;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 14px;
+    }
+    th, td {
+        border: 1px solid #bcccdc;
+        padding: 10px 12px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th {
+        background-color: #065f46;
+        color: white;
+        font-weight: 600;
+    }
+    tr:nth-child(even) {
+        background-color: #f8fafc;
+    }
+    .highlight-box {
+        background-color: #ecfdf5;
+        border-left: 4px solid #10b981;
+        padding: 12px 16px;
+        margin: 15px 0;
+        border-radius: 0 4px 4px 0;
+    }
+    ul, ol {
+        padding-left: 25px;
+    }
+    li {
+        margin-bottom: 6px;
+    }
+    .code-box {
+        background: #f1f5f9;
+        border: 1px solid #cbd5e1;
+        padding: 12px;
+        border-radius: 6px;
+        font-family: Consolas, monospace;
+        font-size: 13px;
+        white-space: pre-wrap;
+    }
+</style>
+</head>
+<body>
+
+<h1>LAPORAN UJIAN TENGAH SEMESTER (UTS)<br><span style="font-size: 18px; font-weight: normal; color: #555;">Analisis Masalah, Solusi Digital & Storyboard Video Animasi Explainer</span></h1>
+
+<div class="meta-box">
+    <table>
+        <tr>
+            <td width="20%"><strong>Nama Mahasiswa</strong></td>
+            <td width="30%">: Moch Ramadhan Sulaeman</td>
+            <td width="20%"><strong>Mata Kuliah</strong></td>
+            <td width="30%">: Teknologi Digital</td>
+        </tr>
+        <tr>
+            <td><strong>NPM</strong></td>
+            <td>: 2514101062</td>
+            <td><strong>Tema Kasus</strong></td>
+            <td>: E-Commerce / E-Business</td>
+        </tr>
+        <tr>
+            <td><strong>Permasalahan</strong></td>
+            <td colspan="3">: <strong style="color: #b91c1c;">Stok UMKM Dicatat Manual (Buku Tulis, Nota, & Spreadsheet Terpisah)</strong></td>
+        </tr>
+        <tr>
+            <td><strong>Nama Solusi</strong></td>
+            <td colspan="3">: <strong style="color: #065f46;">SmartStock AI & OmniSync UMKM™</strong></td>
+        </tr>
+    </table>
+</div>
+
+<h2>BAGIAN 1: JAWABAN PERTANYAAN UTS</h2>
+
+<h3>1. Apa Permasalahan Spesifik yang Dipilih dan Siapa Pengguna yang Terdampak?</h3>
+<p><strong>Permasalahan Spesifik:</strong><br>
+Pencatatan inventaris dan stok barang pada Usaha Mikro, Kecil, dan Menengah (UMKM) yang masih mengandalkan cara manual konvensional (buku tulis kertas, buku kas, lembaran nota tercecer, atau spreadsheet tanpa integrasi real-time). Hal ini menyebabkan ketidakakuratan data stok fisik vs catatan (<em>stock discrepancy</em>), keterputusan sinkronisasi antara toko fisik dan toko online marketplace, serta pemborosan waktu kerja.</p>
+<p><strong>Pengguna dan Pihak yang Terdampak:</strong></p>
+<ul>
+    <li><strong>Pemilik UMKM (Owner):</strong> Terbebani stres operasional, rugi modal akibat barang mati/kedaluwarsa (<em>dead stock</em>), kehilangan barang tanpa terlacak, dan terhambatnya pengembangan bisnis.</li>
+    <li><strong>Karyawan Toko / Kasir:</strong> Kerap disalahkan saat ada selisih stok fisik, dan kesulitan melayani pelanggan dengan cepat saat jam ramai.</li>
+    <li><strong>Konsumen / Pembeli:</strong> Kerap mengalami pembatalan pesanan sepihak (<em>order cancellation</em>) karena stok yang dipesan secara online ternyata sudah habis di toko fisik (<em>overselling</em>).</li>
+    <li><strong>Platform E-Commerce:</strong> Tingkat pembatalan pesanan penjual tinggi yang merusak citra keandalan ekosistem belanja daring.</li>
+</ul>
+
+<h3>2. Bagaimana Proses Konvensional Saat Ini dan Apa Penyebab Masalahnya?</h3>
+<p><strong>Proses Konvensional Saat Ini:</strong></p>
+<ol>
+    <li>Barang masuk dari supplier dicatat secara manual di buku tulis stok atau lembaran faktur.</li>
+    <li>Setiap transaksi kasir di toko fisik ditulis di nota bon kertas, dan pengurangan stok baru dihitung di akhir hari atau akhir pekan.</li>
+    <li>Jika UMKM berjualan di marketplace (Shopee, Tokopedia, TikTok Shop), pemilik toko harus mengubah angka stok satu per satu secara manual. Saat toko fisik ramai, pembaruan ini sering terlupakan.</li>
+    <li>Proses <em>stock opname</em> fisik memakan waktu 3–5 jam di akhir pekan dengan menghitung barang satu per satu secara melelahkan dan rentan salah hitung.</li>
+</ol>
+<p><strong>Akar Penyebab Masalah:</strong></p>
+<ul>
+    <li><strong>Keterbatasan Literasi Digital & Anggaran:</strong> Software ERP korporat terlalu mahal dan rumit untuk pedagang kecil.</li>
+    <li><strong>Human Error Saat Jam Sibuk:</strong> Pencatatan manual sering terlewat, nota hilang, atau salah membaca angka tulisan tangan.</li>
+    <li><strong>Ketiadaan Integrasi Terpusat:</strong> Toko offline, gudang, dan berbagai toko online berjalan secara terpisah tanpa jembatan otomatis.</li>
+</ul>
+
+<h3>3. Apa Dampak Masalah bagi Pengguna atau Organisasi?</h3>
+<table>
+    <tr>
+        <th width="25%">Pihak Terdampak</th>
+        <th>Dampak Nyata</th>
+    </tr>
+    <tr>
+        <td><strong>Pemilik UMKM</strong></td>
+        <td>Modal mengendap pada <em>dead stock</em> hingga puluhan juta rupiah, penalti toko dari marketplace akibat sering membatalkan pesanan, dan kebocoran laba bersih hingga 20%.</td>
+    </tr>
+    <tr>
+        <td><strong>Konsumen</strong></td>
+        <td>Rasa kecewa mendalam akibat pesanan mendadak dibatalkan, waktu terbuang menunggu refund, dan hilangnya loyalitas pada UMKM lokal.</td>
+    </tr>
+    <tr>
+        <td><strong>Karyawan Toko</strong></td>
+        <td>Lembur berjam-jam untuk penghitungan fisik manual dan tekanan stres akibat tuduhan selisih barang hilang.</td>
+    </tr>
+</table>
+
+<h3>4. Solusi Teknologi Digital Apa yang Diusulkan? (Tiga Fitur Utama)</h3>
+<p>Solusi yang dirancang adalah <strong>SmartStock AI & OmniSync UMKM™</strong>, aplikasi seluler cerdas berbasis AI dan kamera ponsel:</p>
+<ul>
+    <li><strong>Fitur 1: AI Instant Optical Scanner (Barcode & Nota Faktur OCR):</strong><br>
+    Cukup arahkan kamera smartphone ke barcode barang atau lembaran nota tagihan supplier, AI secara otomatis membaca nama SKU, jumlah barang, harga modal, dan langsung memasukkan ke sistem dalam 1 detik tanpa perlu ketik manual.</li>
+    <li><strong>Fitur 2: Real-Time Multi-Channel Auto-Sync (Omnichannel Sync):</strong><br>
+    Sinkronisasi stok otomatis dua arah antara kasir toko fisik (POS) dengan etalase e-commerce (Shopee, Tokopedia, TikTok Shop, WhatsApp Shop). Jika 1 barang laku di toko fisik, detik itu juga stok di marketplace berkurang secara serentak (Nol Overselling).</li>
+    <li><strong>Fitur 3: AI Predictive Restock & Dead-Stock Early Warning (WhatsApp AI Bot):</strong><br>
+    Kecerdasan buatan menganalisis laju penjualan barang dan mengirimkan peringatan otomatis ke WhatsApp pemilik saat stok menipis sebelum kehabisan, serta memberi saran promo diskon/bundling untuk barang yang lama mengendap.</li>
+</ul>
+
+<h3>5. Bagaimana Alur Kerja Solusi? (Flowchart Sistem)</h3>
+
+<div style="text-align: center; margin: 25px 0;">
+    <a href="flowchart_xmind.png?v=20261110_final" target="_blank" title="Klik untuk membuka gambar flowchart resolusi penuh">
+        <img src="flowchart_xmind.png?v=20261110_final" alt="Flowchart Arsitektur SmartStock AI & OmniSync UMKM" style="max-width: 100%; max-height: 750px; border-radius: 12px; border: 2px solid #38bdf8; box-shadow: 0 10px 25px rgba(0,0,0,0.25);">
+    </a>
+    <p style="font-size: 13.5px; color: #475569; margin-top: 10px; font-weight: 500;">
+        <em>📊 Gambar 5.1: Flowchart Sistem — SmartStock AI & OmniSync UMKM (Mata Kuliah: Teknologi Digital)</em>
+    </p>
+</div>
+<div class="code-box">
+(Mulai)
+   |
+   v
+/ Masukan data barang & scan barcode via HP /
+   |
+   v
+[ Simpan ke Cloud Database AI, auto-sync & potong stok kasir toko dan e-commerce ]
+   |
+   v
+< ? sisa stok < batas aman >
+   |-- Ya ----> / Kirim alert kulakan via WA / ---------.
+   |                                                    |
+   '-- Tidak -> / Stok aman & laporan rapi / ----------+
+                                                        v
+                                                    (Selesai)</div>
+
+<h3>6. Perbandingan Kondisi Sebelum dan Sesudah Penerapan Solusi</h3>
+<table>
+    <tr>
+        <th width="25%">Parameter</th>
+        <th width="37%">Sebelum Penerapan (Pencatatan Manual)</th>
+        <th width="38%">Sesudah Penerapan (SmartStock AI)</th>
+    </tr>
+    <tr>
+        <td><strong>Metode Pencatatan</strong></td>
+        <td>Buku tulis kertas lusuh, nota bon tercecer, spreadsheet terpisah.</td>
+        <td>Database cloud terpusat, aman dan dapat diakses dari smartphone 24/7.</td>
+    </tr>
+    <tr>
+        <td><strong>Kecepatan Input Stok</strong></td>
+        <td>Butuh 1–2 jam menyalin faktur supplier ke buku catatan.</td>
+        <td>Cukup 10 detik via foto kamera HP berbasis AI OCR.</td>
+    </tr>
+    <tr>
+        <td><strong>Sinkronisasi Offline & Online</strong></td>
+        <td>Terputus total; stok di marketplace harus diubah manual satu per satu.</td>
+        <td>Terhubung otomatis real-time 2 arah ke semua marketplace secara instan.</td>
+    </tr>
+    <tr>
+        <td><strong>Kasus Overselling / Pembatalan</strong></td>
+        <td>Sering terjadi (10%–20% pesanan dibatalkan karena stok fisik habis).</td>
+        <td>0% (Nol Kasus), toko terbebas dari penalti marketplace dan rating bintang 5.</td>
+    </tr>
+    <tr>
+        <td><strong>Waktu Stock Opname</strong></td>
+        <td>3–5 jam tiap akhir pekan, toko terpaksa tutup lebih awal.</td>
+        <td>Otomatis terakumulasi setiap detik, hemat waktu hingga 80%.</td>
+    </tr>
+</table>
+
+<h3>7. Manfaat, Keterbatasan, dan Risiko Solusi</h3>
+<ul>
+    <li><strong>Manfaat:</strong> Menghemat waktu 80%, mengeliminasi modal mati akibat barang kedaluwarsa, mencegah sanksi marketplace, dan memudahkan permodalan bank berkat laporan keuangan rapi.</li>
+    <li><strong>Keterbatasan & Mitigasi:</strong>
+        <ul>
+            <li><em>Ketergantungan Sinyal Internet:</em> Diminimalkan dengan arsitektur <strong>Offline-First</strong> (kasir tetap berfungsi saat tanpa sinyal dan otomatis sync saat online kembali).</li>
+            <li><em>Barang Rumahan Tanpa Barcode:</em> Disediakan generator kode QR/Barcode mandiri gratis dari aplikasi.</li>
+        </ul>
+    </li>
+    <li><strong>Risiko & Mitigasi Keamanan:</strong> Data keuangan dienkripsi end-to-end AES-256 mematuhi UU PDP No. 27 Tahun 2022, dilengkapi pencadangan otomatis cloud sehingga data tidak hilang meski ponsel rusak.</li>
+</ul>
+
+<hr>
+
+<h2>BAGIAN 2: STORYBOARD VIDEO ANIMASI EXPLAINER (FORMAT 9:16)</h2>
+<p><strong>Spesifikasi Video:</strong> Format Vertikal 9:16 (1080 &times; 1920 px) | Durasi Total: 120 Detik | Tokoh: Pak Joko (Pemilik Toko UMKM)</p>
+
+<table>
+    <tr>
+        <th width="14%">Adegan & Durasi</th>
+        <th width="20%">Visual & Elemen 9:16</th>
+        <th width="18%">Aksi Animasi</th>
+        <th width="24%">Narasi / Voice Over (VO)</th>
+        <th width="12%">Teks Layar</th>
+        <th width="12%">SFX & BGM</th>
+    </tr>
+    <tr>
+        <td><strong>1. Masalah</strong><br>(00:00 – 00:15)</td>
+        <td>Pak Joko duduk lesu di meja toko, pusing di depan tumpukan buku tulis stok lusuh penuh coretan tinta dan nota berhamburan. Rak toko tampak berantakan.</td>
+        <td>Buku tulis jatuh menumpuk di meja dengan debu kartun. Nota berterbangan ditiup angin. Tanda tanya berputar di atas kepala Pak Joko.</td>
+        <td><em>"Stok barang UMKM masih dicatat di buku tulis dan nota kertas? Awas, rawan hilang, selisih hitung, dan bikin pusing pemilik toko!"</em></td>
+        <td><strong>STOK DICATAT MANUAL?</strong><br>Buku Rusak & Nota Hilang!</td>
+        <td><strong>BGM:</strong> Musik komedi cemas.<br><strong>SFX:</strong> Tumpukan buku menghantam meja, kertas robek, helaan napas.</td>
+    </tr>
+    <tr>
+        <td><strong>2. Dampak</strong><br>(00:15 – 00:30)</td>
+        <td>Split screen vertikal: Atas layar HP pembeli muncul notifikasi merah "Pesanan Dibatalkan - Stok Habis". Bawah: Pak Joko stres di depan laci kasir kosong & barang gudang kedaluwarsa.</td>
+        <td>Notifikasi merah bergetar di layar. Rating bintang 5 pecah berjatuhan menjadi bintang 1. Koin uang melayang keluar dari laci kasir.</td>
+        <td><em>"Akibatnya fatal! Pesanan online masuk tapi stok fisik toko ternyata habis. Kena penalti bintang satu, pembeli kecewa, dan rugi jutaan rupiah!"</em></td>
+        <td><strong>Pesanan Dibatalkan!</strong><br>Overselling & Rating Anjlok<br>Rugi Modal Mati!</td>
+        <td><strong>SFX:</strong> Notifikasi error keras (buzz), kaca pecah, koin tumpah.<br><strong>BGM:</strong> Nada tegang melambat.</td>
+    </tr>
+    <tr>
+        <td><strong>3. Solusi Digital</strong><br>(00:30 – 00:50)</td>
+        <td>Layar berganti cerah. Muncul mockup smartphone modern menampilkan logo <strong>SmartStock AI & OmniSync UMKM™</strong> dengan ikon awan hijau menyambungkan kasir ke Shopee, Tokopedia, dan TikTok Shop.</td>
+        <td>Smartphone meluncur naik dengan bounce halus. Ikon awan cloud memancarkan garis cahaya ke logo marketplace. Pak Joko tersenyum ceria.</td>
+        <td><em>"Solusinya: SmartStock AI! Aplikasi manajemen stok pintar yang otomatis menghubungkan kasir toko fisik dan seluruh online shop kamu dalam satu genggaman."</em></td>
+        <td><strong>SOLUSI CERDAS UMKM:</strong><br>SmartStock AI & OmniSync<br><em>Kelola Stok 100% Otomatis!</em></td>
+        <td><strong>BGM:</strong> Upbeat Tech Acoustic ceria dan energetik.<br><strong>SFX:</strong> Sparkle chime, digital whoosh.</td>
+    </tr>
+    <tr>
+        <td><strong>4. Alur Sistem</strong><br>(00:50 – 01:15)</td>
+        <td>3 kotak tahapan vertikal dinamis:<br>1. Foto nota / scan barcode pakai kamera HP.<br>2. Cloud auto-sync kurangi stok di kasir & Shopee serentak.<br>3. Notifikasi WhatsApp masuk: "Waktunya Kulakan!".</td>
+        <td>Sinar laser hijau menyapu barcode di layar. Ikon angka stok di marketplace berkurang seketika saat kasir scan. Balon chat WhatsApp meluncur masuk dengan centang hijau.</td>
+        <td><em>"Tiga langkah mudah: Scan barcode pakai kamera HP, stok otomatis tersinkron ke semua marketplace, dan dapatkan notifikasi WhatsApp saat stok menipis!"</em></td>
+        <td><strong>1. Scan Barcode via HP</strong><br><strong>2. Auto-Sync Online & Offline</strong><br><strong>3. Pengingat Kulakan di WA</strong></td>
+        <td><strong>SFX:</strong> Beep barcode scanner, denting sinkronisasi sukses, pop pesan WA masuk.</td>
+    </tr>
+    <tr>
+        <td><strong>5. Manfaat</strong><br>(01:15 – 01:40)</td>
+        <td>Toko Pak Joko tertata rapi dengan barcode QR. Pak Joko melayani pembeli dengan senyum lebar memakai HP. Grafik batang penjualan hijau melonjak tinggi.</td>
+        <td>Tirai pembersih menyapu layar. Grafik omzet melesat naik. Angka statistik: "Hemat Waktu 80%" dan "Nol Pembatalan" muncul. Hujan konfeti emas memenuhi layar.</td>
+        <td><em>"Hasilnya nyata! Hemat waktu pembukuan hingga 80%, nol pembatalan pesanan, dan pelanggan puas repeat order dengan rating bintang lima!"</em></td>
+        <td><strong>Nol Pembatalan Stok!</strong><br>Hemat Waktu 80%<br>Banjir Bintang ⭐⭐⭐⭐⭐</td>
+        <td><strong>SFX:</strong> Kasir ka-ching struk, tepuk tangan mini, kembang api pop pop.<br><strong>BGM:</strong> Puncak nada ceria.</td>
+    </tr>
+    <tr>
+        <td><strong>6. Kesimpulan</strong><br>(01:40 – 02:00)</td>
+        <td>Pak Joko bersama para pelaku UMKM Indonesia tersenyum bangga memegang HP mereka. Di tengah layar muncul lencana digital emas dan kartu identitas mahasiswa.</td>
+        <td>Zoom ke perisai emas. Teks slogan muncul kinetik. Fade-out elegan menutup video pada detik ke-120.</td>
+        <td><em>"Kelola stok gak perlu ribet. Bersama SmartStock AI, UMKM naik kelas, kelola stok cepat dan pas! Saya Moch Ramadhan Sulaeman, terima kasih."</em></td>
+        <td><strong>UMKM Naik Kelas, Kelola Stok Cepat & Pas!</strong><br><em>Moch Ramadhan Sulaeman</em><br>NPM: 2514101062</td>
+        <td><strong>BGM:</strong> Fade-out musik penutup.<br><strong>SFX:</strong> Soft glass chime penutup.</td>
+    </tr>
+</table>
+
+<hr>
+
+<h2>BAGIAN 3: ALAT & SUMBER ASET (TRANSPARANSI AKADEMIK)</h2>
+<ul>
+    <li><strong>Aplikasi Produksi Animasi:</strong> Canva Pro (Desain karakter 2D flat & aset visual) dan CapCut PC/Mobile (Animasi keyframe, auto-caption, efek transisi dinamis).</li>
+    <li><strong>Kecerdasan Buatan (AI):</strong> Gemini AI (Riset sistem SmartStock AI & naskah storyboard) & CapCut AI Voice Generator (Voice Over Bahasa Indonesia).</li>
+    <li><strong>Sumber Audio:</strong> CapCut Audio Library (BGM Komersial Bebas Royalti) dan Freesound.org (Sound Effects CC0).</li>
+</ul>
+
+</body>
+</html>
