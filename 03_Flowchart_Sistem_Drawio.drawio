@@ -1,0 +1,84 @@
+<mxfile host="app.diagrams.net" modified="2026-11-14T04:20:00.000Z" agent="Antigravity" version="24.7.0" type="device">
+  <diagram id="smartstock-ai-flowchart" name="Flowchart SmartStock AI - Moch Ramadhan Sulaeman (2514101062)">
+    <mxGraphModel dx="1200" dy="1920" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1080" pageHeight="1920" background="#070C18" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Header Title -->
+        <mxCell id="header" value="&lt;b style=&quot;font-size:20px;color:#ffffff;&quot;&gt;FLOWCHART SISTEM SMARTSTOCK AI &amp;amp; OMNISYNC UMKM&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:14px;color:#94a3b8;&quot;&gt;Mata Kuliah: Teknologi Digital | Moch Ramadhan Sulaeman (NPM: 2514101062)&lt;/font&gt;" style="text;html=1;strokeColor=#334155;fillColor=#0f172a;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;arcSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="40" width="920" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- 1. Terminator: Mulai -->
+        <mxCell id="node_mulai" value="&lt;b&gt;Mulai&lt;/b&gt;" style="strokeWidth=3;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fillColor=#0e7490;strokeColor=#22d3ee;fontColor=#ffffff;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="245" y="175" width="270" height="84" as="geometry" />
+        </mxCell>
+
+        <!-- 2. Input Parallelogram -->
+        <mxCell id="node_input" value="&lt;b&gt;Masukan data barang &amp;amp;&lt;br&gt;scan barcode via HP&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=35;fillColor=#1d4ed8;strokeColor=#60a5fa;strokeWidth=3;fontColor=#ffffff;fontSize=19;" vertex="1" parent="1">
+          <mxGeometry x="145" y="385" width="470" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- 3. Process Rounded Rect -->
+        <mxCell id="node_process" value="&lt;b&gt;Simpan ke Cloud Database AI,&lt;br&gt;auto-sync &amp;amp; potong stok&lt;br&gt;kasir toko dan e-commerce&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#047857;strokeColor=#34d399;strokeWidth=3;fontColor=#ffffff;fontSize=19;" vertex="1" parent="1">
+          <mxGeometry x="150" y="635" width="460" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- 4. Decision Diamond -->
+        <mxCell id="node_decision" value="&lt;b&gt;? sisa stok &amp;lt;&lt;br&gt;batas aman&lt;/b&gt;" style="rhombus;whiteSpace=wrap;html=1;fillColor=#b45309;strokeColor=#fbbf24;strokeWidth=3;fontColor=#ffffff;fontSize=19;" vertex="1" parent="1">
+          <mxGeometry x="190" y="925" width="380" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- 5A. Output WA Alert (Ya) -->
+        <mxCell id="node_alert" value="&lt;b&gt;Kirim alert&lt;br&gt;kulakan via WA&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=30;fillColor=#b91c1c;strokeColor=#f87171;strokeWidth=3;fontColor=#ffffff;fontSize=19;" vertex="1" parent="1">
+          <mxGeometry x="730" y="980" width="270" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 5B. Output Stok Aman (Tidak) -->
+        <mxCell id="node_aman" value="&lt;b&gt;Stok aman &amp;amp;&lt;br&gt;laporan rapi&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=30;fillColor=#15803d;strokeColor=#86efac;strokeWidth=3;fontColor=#ffffff;fontSize=19;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1265" width="360" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 6. Terminator: Selesai -->
+        <mxCell id="node_selesai" value="&lt;b&gt;Selesai&lt;/b&gt;" style="strokeWidth=3;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fillColor=#6d28d9;strokeColor=#c084fc;fontColor=#ffffff;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="245" y="1545" width="270" height="84" as="geometry" />
+        </mxCell>
+
+        <!-- Edges / Arrows -->
+        <mxCell id="edge1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7dd3fc;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="node_mulai" target="node_input">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7dd3fc;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="node_input" target="node_process">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7dd3fc;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="node_process" target="node_decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_ya" value="&lt;b style=&quot;font-size:18px;color:#ffffff;&quot;&gt;Ya&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7dd3fc;strokeWidth=3;endArrow=block;endFill=1;labelBackgroundColor=#070C18;" edge="1" parent="1" source="node_decision" target="node_alert">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_tidak" value="&lt;b style=&quot;font-size:18px;color:#ffffff;&quot;&gt;Tidak&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7dd3fc;strokeWidth=3;endArrow=block;endFill=1;labelBackgroundColor=#070C18;" edge="1" parent="1" source="node_decision" target="node_aman">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_end1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7dd3fc;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="node_aman" target="node_selesai">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_end2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7dd3fc;strokeWidth=3;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="node_alert" target="node_selesai">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1035" y="1035" />
+              <mxPoint x="1035" y="1460" />
+              <mxPoint x="380" y="1460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Footer -->
+        <mxCell id="footer" value="&lt;b style=&quot;font-size:15px;color:#fde047;&quot;&gt;Moch Ramadhan Sulaeman (NPM: 2514101062)&lt;/b&gt; — Topik: Stok UMKM Dicatat Manual | Solusi: SmartStock AI &amp;amp; OmniSync UMKM" style="text;html=1;strokeColor=#334155;fillColor=#0f172a;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;arcSize=15;strokeWidth=2;fontColor=#cbd5e1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1760" width="920" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
