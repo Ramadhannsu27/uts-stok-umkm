@@ -334,12 +334,17 @@ let audioDest = null;
 let micStream = null;
 let micSourceNode = null;
 
-// Preload scene images
+// Preload scene images (supports both direct folder and Aset_&_Sumber_Dokumen subfolder)
 const sceneImages = {};
 for (let i = 1; i <= 6; i++) {
     const img = new Image();
-    img.src = `scene${i}.jpg?v=` + Date.now();
     img.onload = () => { sceneImages[i] = img; };
+    img.onerror = () => {
+        const fallbackImg = new Image();
+        fallbackImg.onload = () => { sceneImages[i] = fallbackImg; };
+        fallbackImg.src = `Aset_&_Sumber_Dokumen/scene${i}.jpg?v=` + Date.now();
+    };
+    img.src = `scene${i}.jpg?v=` + Date.now();
 }
 
 // Storyboard Data (Dengan Flowchart XMind Sebelum Animasi - Total 120 Detik)
@@ -627,12 +632,12 @@ function drawScene(time) {
         ctx.drawImage(bgImg, -W/2, -H/2, W, H);
         ctx.restore();
 
-        // Dark Vignette Overlay
+        // Soft Vignette Overlay (Lighter at top so it never darkens top scene elements)
         const vig = ctx.createLinearGradient(0, 0, 0, H);
-        vig.addColorStop(0, "rgba(7, 10, 18, 0.55)");
-        vig.addColorStop(0.30, "rgba(7, 10, 18, 0.12)");
-        vig.addColorStop(0.70, "rgba(7, 10, 18, 0.25)");
-        vig.addColorStop(1, "rgba(7, 10, 18, 0.88)");
+        vig.addColorStop(0, "rgba(7, 10, 18, 0.22)");
+        vig.addColorStop(0.22, "rgba(7, 10, 18, 0.05)");
+        vig.addColorStop(0.75, "rgba(7, 10, 18, 0.20)");
+        vig.addColorStop(1, "rgba(7, 10, 18, 0.85)");
         ctx.fillStyle = vig;
         ctx.fillRect(0, 0, W, H);
     } else {
@@ -1337,33 +1342,24 @@ function drawFcShape(type, cx, cy, w, h, lines, t, c1, c2, border, icon, time) {
     ctx.translate(cx, cy);
     const s = easeOutBack(Math.min(1, t));
     ctx.scale(s, s);
-    const pulse = 14 + Math.sin(time * 3 + cx) * 6;
+    const pulse = 8 + Math.sin(time * 3 + cx) * 3;
     ctx.shadowColor = border; ctx.shadowBlur = pulse;
     const g = ctx.createLinearGradient(-w/2, -h/2, w/2, h/2);
     g.addColorStop(0, c1); g.addColorStop(1, c2);
-    ctx.fillStyle = g; ctx.strokeStyle = border; ctx.lineWidth = 5; ctx.lineJoin = "round";
+    ctx.fillStyle = g; ctx.strokeStyle = border; ctx.lineWidth = 4.5; ctx.lineJoin = "round";
     ctx.beginPath();
     if (type === 'term') ctx.roundRect(-w/2, -h/2, w, h, h/2);
     else if (type === 'proc') ctx.roundRect(-w/2, -h/2, w, h, 20);
-    else if (type === 'io') { const k = 36; ctx.moveTo(-w/2 + k, -h/2); ctx.lineTo(w/2 + k, -h/2); ctx.lineTo(w/2 - k, h/2); ctx.lineTo(-w/2 - k, h/2); ctx.closePath(); }
+    else if (type === 'io') { const k = 34; ctx.moveTo(-w/2 + k, -h/2); ctx.lineTo(w/2 + k, -h/2); ctx.lineTo(w/2 - k, h/2); ctx.lineTo(-w/2 - k, h/2); ctx.closePath(); }
     else if (type === 'dec') { ctx.moveTo(0, -h/2); ctx.lineTo(w/2, 0); ctx.lineTo(0, h/2); ctx.lineTo(-w/2, 0); ctx.closePath(); }
     ctx.fill(); ctx.shadowBlur = 0; ctx.stroke();
-    // glossy highlight
-    ctx.save(); ctx.clip(); ctx.fillStyle = "rgba(255,255,255,0.10)"; ctx.fillRect(-w, -h/2, w * 2, h * 0.42); ctx.restore();
-    // text
+    // text (without top glossy shadow band so shapes stay 100% crisp)
     ctx.fillStyle = "#ffffff"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.font = "700 25px 'Poppins', sans-serif";
-    ctx.shadowColor = "rgba(0,0,0,0.55)"; ctx.shadowBlur = 6;
-    const lh = 32, y0 = -((lines.length - 1) * lh) / 2;
+    ctx.font = "700 24.5px 'Poppins', sans-serif";
+    ctx.shadowColor = "rgba(0,0,0,0.35)"; ctx.shadowBlur = 4;
+    const lh = 31, y0 = -((lines.length - 1) * lh) / 2;
     lines.forEach((ln, i) => ctx.fillText(ln, 0, y0 + i * lh));
     ctx.shadowBlur = 0;
-    // icon badge
-    if (false && icon) {
-        const bx = -w/2 + 6, by = -h/2 + 4;
-        ctx.fillStyle = "#0b1220"; ctx.strokeStyle = border; ctx.lineWidth = 3;
-        ctx.beginPath(); ctx.arc(bx, by, 24, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-        ctx.font = "26px sans-serif"; ctx.fillText(icon, bx, by + 2);
-    }
     ctx.textBaseline = "alphabetic";
     ctx.restore();
 }
@@ -1373,37 +1369,37 @@ function drawMotionSceneFlowchart(p, time) {
     bg.addColorStop(0, "#0a1228"); bg.addColorStop(1, "#050914");
     ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = "rgba(56, 189, 248, 0.16)";
-    for (let gx = 30; gx < W; gx += 45) for (let gy = 225; gy < 1580; gy += 45) { ctx.beginPath(); ctx.arc(gx, gy, 1.8, 0, Math.PI * 2); ctx.fill(); }
+    for (let gx = 30; gx < W; gx += 45) for (let gy = 175; gy < 1575; gy += 45) { ctx.beginPath(); ctx.arc(gx, gy, 1.8, 0, Math.PI * 2); ctx.fill(); }
     // floating glow orbs
     for (let i = 0; i < 9; i++) {
         const ox = (i * 137 + Math.sin(time * 0.6 + i) * 60) % W;
-        const oy = 260 + ((i * 211 + time * 28) % 1250);
+        const oy = 220 + ((i * 211 + time * 28) % 1250);
         const og = ctx.createRadialGradient(ox, oy, 0, ox, oy, 70);
-        og.addColorStop(0, i % 2 ? "rgba(52,211,153,0.16)" : "rgba(56,189,248,0.16)"); og.addColorStop(1, "rgba(0,0,0,0)");
+        og.addColorStop(0, i % 2 ? "rgba(52,211,153,0.12)" : "rgba(56,189,248,0.12)"); og.addColorStop(1, "rgba(0,0,0,0)");
         ctx.fillStyle = og; ctx.fillRect(ox - 70, oy - 70, 140, 70 * 2);
     }
     const t = (a, b) => Math.min(1, Math.max(0, (p - a) / (b - a)));
     const X = 380;
-    // Connectors (ujung panah menempel tepat di tepi shape dengan jarak lapang & panjang)
-    drawFcPath([[X, 257], [X, 385]], "#22d3ee", t(0.10, 0.16), time, true);
-    drawFcPath([[X, 505], [X, 635]], "#60a5fa", t(0.24, 0.30), time, true);
-    drawFcPath([[X, 795], [X, 925]], "#34d399", t(0.40, 0.46), time, true);
-    drawFcPath([[570, 1035], [730, 1035]], "#f87171", t(0.58, 0.64), time, true);
-    drawFcPath([[X, 1145], [X, 1265]], "#86efac", t(0.72, 0.78), time, true);
-    drawFcPath([[X, 1375], [X, 1545]], "#c084fc", t(0.88, 0.92), time, true);
-    drawFcPath([[1000, 1035], [1035, 1035], [1035, 1460], [X, 1460]], "#f87171", t(0.84, 0.95), time, true);
-    // Shapes
-    drawFcShape('term', X, 215, 270, 84, ["Mulai"], t(0.02, 0.10), "#0e7490", "#155e75", "#22d3ee", "", time);
-    drawFcShape('io', X, 445, 470, 120, ["Masukan data barang &", "scan barcode via HP"], t(0.16, 0.24), "#1d4ed8", "#1e40af", "#60a5fa", "", time);
-    drawFcShape('proc', X, 715, 460, 160, ["Simpan ke Cloud Database AI,", "auto-sync & potong stok", "kasir toko dan e-commerce"], t(0.30, 0.40), "#047857", "#065f46", "#34d399", "", time);
-    drawFcShape('dec', X, 1035, 380, 220, ["? sisa stok <", "batas aman"], t(0.46, 0.56), "#b45309", "#92400e", "#fbbf24", "", time);
-    drawFcShape('io', 865, 1035, 270, 110, ["Kirim alert", "kulakan via WA"], t(0.64, 0.72), "#b91c1c", "#991b1b", "#f87171", "", time);
-    drawFcShape('io', X, 1320, 360, 110, ["Stok aman &", "laporan rapi"], t(0.78, 0.86), "#15803d", "#166534", "#86efac", "", time);
-    drawFcShape('term', X, 1587, 270, 84, ["Selesai"], t(0.92, 1.0), "#6d28d9", "#5b21b6", "#c084fc", "", time);
+    // Connectors (spaced cleanly between y=195 and y=1545 so top header & bottom caption never overlap)
+    drawFcPath([[X, 275], [X, 390]], "#22d3ee", t(0.10, 0.16), time, true);
+    drawFcPath([[X, 506], [X, 620]], "#60a5fa", t(0.24, 0.30), time, true);
+    drawFcPath([[X, 776], [X, 895]], "#34d399", t(0.40, 0.46), time, true);
+    drawFcPath([[570, 1000], [730, 1000]], "#f87171", t(0.58, 0.64), time, true);
+    drawFcPath([[X, 1105], [X, 1215]], "#86efac", t(0.72, 0.78), time, true);
+    drawFcPath([[X, 1321], [X, 1465]], "#c084fc", t(0.88, 0.92), time, true);
+    drawFcPath([[1000, 1000], [1035, 1000], [1035, 1395], [X, 1395]], "#f87171", t(0.84, 0.95), time, true);
+    // Shapes (Node 1 starts at y=195 well below header; Node 6 ends at y=1545 well above caption)
+    drawFcShape('term', X, 235, 270, 80, ["Mulai"], t(0.02, 0.10), "#0e7490", "#155e75", "#22d3ee", "", time);
+    drawFcShape('io', X, 448, 470, 116, ["Masukan data barang &", "scan barcode via HP"], t(0.16, 0.24), "#1d4ed8", "#1e40af", "#60a5fa", "", time);
+    drawFcShape('proc', X, 698, 460, 156, ["Simpan ke Cloud Database AI,", "auto-sync & potong stok", "kasir toko dan e-commerce"], t(0.30, 0.40), "#047857", "#065f46", "#34d399", "", time);
+    drawFcShape('dec', X, 1000, 380, 210, ["? sisa stok <", "batas aman"], t(0.46, 0.56), "#b45309", "#92400e", "#fbbf24", "", time);
+    drawFcShape('io', 865, 1000, 270, 106, ["Kirim alert", "kulakan via WA"], t(0.64, 0.72), "#b91c1c", "#991b1b", "#f87171", "", time);
+    drawFcShape('io', X, 1268, 360, 106, ["Stok aman &", "laporan rapi"], t(0.78, 0.86), "#15803d", "#166534", "#86efac", "", time);
+    drawFcShape('term', X, 1505, 270, 80, ["Selesai"], t(0.92, 1.0), "#6d28d9", "#5b21b6", "#c084fc", "", time);
     ctx.textAlign = "center";
-    ctx.font = "800 26px 'Montserrat', sans-serif";
-    if (p > 0.64) { ctx.fillStyle = "#fecaca"; ctx.fillText("YA", 650, 1005); }
-    if (p > 0.78) { ctx.fillStyle = "#bbf7d0"; ctx.fillText("TIDAK", 435, 1205); }
+    ctx.font = "800 25px 'Montserrat', sans-serif";
+    if (p > 0.64) { ctx.fillStyle = "#fecaca"; ctx.fillText("YA", 650, 972); }
+    if (p > 0.78) { ctx.fillStyle = "#bbf7d0"; ctx.fillText("TIDAK", 435, 1165); }
 }
 // Scene 1: Problem (Animated Motion Graphics on Image - NO CARTOON OVERLAY)
 function drawMotionScene1(p, time) {
@@ -1785,11 +1781,11 @@ function drawMotionScene6(p, time) {
 
 // INSTAGRAM REELS VIRAL KARAOKE AUTO-CAPTIONS (SLIDING WINDOW - NEVER OVERFLOWS)
 function drawReelsCaptions(sc, sceneProgress) {
-    const boxY = H - 330;
-    const boxH = 220;
+    const boxY = H - 305;
+    const boxH = 210;
 
     // Glassmorphism Card
-    ctx.fillStyle = "rgba(11, 15, 25, 0.95)";
+    ctx.fillStyle = "rgba(11, 15, 25, 0.92)";
     ctx.beginPath();
     ctx.roundRect(40, boxY, W - 80, boxH, 20);
     ctx.fill();
@@ -1918,31 +1914,35 @@ function drawReelsTransition(sc, time) {
 }
 
 function drawHeader(sc, time) {
-    ctx.fillStyle = "rgba(11, 15, 25, 0.94)";
-    ctx.fillRect(0, 0, W, 210);
+    const headGrad = ctx.createLinearGradient(0, 0, 0, 138);
+    headGrad.addColorStop(0, "rgba(11, 15, 25, 0.88)");
+    headGrad.addColorStop(0.75, "rgba(11, 15, 25, 0.68)");
+    headGrad.addColorStop(1, "rgba(11, 15, 25, 0.0)");
+    ctx.fillStyle = headGrad;
+    ctx.fillRect(0, 0, W, 138);
 
     const progressWidth = (time / totalDuration) * W;
     ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
-    ctx.fillRect(0, 0, W, 10);
+    ctx.fillRect(0, 0, W, 8);
     ctx.fillStyle = "#10b981";
-    ctx.fillRect(0, 0, progressWidth, 10);
+    ctx.fillRect(0, 0, progressWidth, 8);
 
     ctx.textAlign = "center";
     ctx.fillStyle = sc.accent;
-    ctx.font = "900 38px 'Montserrat', sans-serif";
-    ctx.fillText(sc.title, W/2, 80);
+    ctx.font = "900 34px 'Montserrat', sans-serif";
+    ctx.fillText(sc.title, W/2, 56);
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "700 28px 'Poppins', sans-serif";
-    ctx.fillText(sc.sub, W/2, 135);
+    ctx.font = "700 24px 'Poppins', sans-serif";
+    ctx.fillText(sc.sub, W/2, 98);
 
     const mins = Math.floor(time / 60);
     const secs = Math.floor(time % 60);
     const timeStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    ctx.font = "bold 26px monospace";
+    ctx.font = "bold 24px monospace";
     ctx.fillStyle = "#ffd700";
     ctx.textAlign = "right";
-    ctx.fillText(timeStr, W - 50, 80);
+    ctx.fillText(timeStr, W - 45, 56);
 }
 
 // Controls
